@@ -1,0 +1,341 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Recarga por Yape - KCF STORE</title>
+  <style>
+    @import url('https://fonts.googleapis.com/css2?family=Orbitron:wght@500;700&display=swap');
+
+    body {
+      font-family: 'Orbitron', sans-serif;
+      background: radial-gradient(circle at center, #0a0000 60%, #190000 100%);
+      color: white;
+      text-align: center;
+      margin: 0;
+      padding: 0;
+      min-height: 100vh;
+      overflow-x: hidden;
+    }
+
+    h1 {
+      font-size: 2.3em;
+      color: #ff0033;
+      text-shadow: 0 0 20px #ff0033, 0 0 40px #ff0033;
+      margin-top: 40px;
+      animation: glow 2s infinite alternate;
+    }
+
+    @keyframes glow {
+      from { text-shadow: 0 0 20px #ff0033; }
+      to { text-shadow: 0 0 40px #ff0000, 0 0 60px #ff3366; }
+    }
+
+    .card {
+      background: rgba(25, 0, 0, 0.85);
+      border-radius: 15px;
+      box-shadow: 0 0 25px #ff0033;
+      padding: 25px;
+      width: 90%;
+      max-width: 420px;
+      margin: 30px auto;
+      transition: all 0.3s ease;
+    }
+
+    .card:hover {
+      transform: scale(1.01);
+      box-shadow: 0 0 40px #ff0033;
+    }
+
+    .yape-logo {
+      width: 130px;
+      border-radius: 15px;
+      margin-bottom: 15px;
+      animation: float 3s ease-in-out infinite;
+      box-shadow: 0 0 25px #ff0033, 0 0 50px #ff0033;
+    }
+
+    @keyframes float {
+      0% { transform: translateY(0px); }
+      50% { transform: translateY(-6px); }
+      100% { transform: translateY(0px); }
+    }
+
+    input {
+      width: 80%;
+      padding: 10px;
+      border: none;
+      border-radius: 10px;
+      outline: none;
+      font-family: 'Orbitron', sans-serif;
+      text-align: center;
+      margin-top: 10px;
+      background-color: #fff;
+      color: #111;
+      font-weight: bold;
+      font-size: 1em;
+      box-shadow: inset 0 0 10px #ff0033;
+    }
+
+    button {
+      margin-top: 15px;
+      background: linear-gradient(90deg, #ff0000, #ff3366);
+      border: none;
+      color: white;
+      padding: 12px 25px;
+      border-radius: 10px;
+      font-family: 'Orbitron', sans-serif;
+      cursor: pointer;
+      transition: all 0.25s ease;
+      font-size: 1em;
+      box-shadow: 0 0 12px #ff0033;
+    }
+
+    button:hover {
+      transform: scale(1.05);
+      box-shadow: 0 0 25px #ff3366, 0 0 50px #ff0000;
+    }
+
+    .boleta {
+      margin-top: 25px;
+      padding: 15px;
+      background: rgba(255, 0, 0, 0.1);
+      border-radius: 10px;
+      display: none;
+      box-shadow: inset 0 0 12px #ff0033;
+      opacity: 0;
+      transition: opacity 0.5s ease-in-out;
+    }
+
+    .boleta.show {
+      display: block;
+      opacity: 1;
+    }
+
+    .whatsapp-btn, .copy-btn, .history-btn {
+      display: inline-flex;
+      align-items: center;
+      justify-content: center;
+      gap: 10px;
+      border-radius: 50px;
+      padding: 10px 20px;
+      margin: 10px 5px;
+      color: #fff;
+      font-weight: bold;
+      text-decoration: none;
+      font-size: 0.95em;
+      transition: 0.3s;
+    }
+
+    .whatsapp-btn {
+      background: linear-gradient(90deg, #25d366, #128c7e);
+      box-shadow: 0 0 15px #25d366;
+    }
+
+    .copy-btn {
+      background: linear-gradient(90deg, #007bff, #0044ff);
+      box-shadow: 0 0 15px #007bff;
+    }
+
+    .history-btn {
+      background: linear-gradient(90deg, #ff9900, #ff6600);
+      box-shadow: 0 0 15px #ff6600;
+    }
+
+    .whatsapp-btn:hover, .copy-btn:hover, .history-btn:hover {
+      transform: scale(1.05);
+      filter: brightness(1.2);
+    }
+
+    .whatsapp-btn img {
+      width: 25px;
+      height: 25px;
+    }
+
+    .historial {
+      display: none;
+      background: rgba(25, 0, 0, 0.9);
+      border-radius: 15px;
+      margin: 25px auto;
+      width: 90%;
+      max-width: 420px;
+      padding: 20px;
+      box-shadow: 0 0 20px #ff0033;
+    }
+
+    .recarga {
+      background: rgba(50, 0, 0, 0.6);
+      padding: 15px;
+      border-radius: 10px;
+      margin-bottom: 15px;
+      text-align: left;
+    }
+
+    .estado {
+      font-weight: bold;
+      padding: 5px 10px;
+      border-radius: 8px;
+      color: white;
+      display: inline-block;
+    }
+
+    .pendiente { background: #ffcc00; color: #000; }
+    .aprobado { background: #00cc66; }
+
+    .back-btn {
+      background: linear-gradient(90deg, #ff0000, #ff3366);
+      box-shadow: 0 0 20px #ff0033;
+      padding: 10px 25px;
+      border: none;
+      border-radius: 10px;
+      color: white;
+      font-family: 'Orbitron', sans-serif;
+      font-size: 1em;
+      margin-top: 10px;
+      cursor: pointer;
+      transition: 0.3s;
+    }
+
+    .back-btn:hover {
+      transform: scale(1.05);
+      box-shadow: 0 0 30px #ff3366;
+    }
+
+    @keyframes fadeOut {
+      0% { opacity: 1; transform: translate(-50%, -50%) scale(1); }
+      80% { opacity: 1; transform: translate(-50%, -50%) scale(1.05); }
+      100% { opacity: 0; transform: translate(-50%, -50%) scale(0.8); }
+    }
+  </style>
+</head>
+<body>
+
+  <h1>🔥 Recarga por Yape 🔥</h1>
+
+  <div class="card" id="formulario">
+    <img class="yape-logo" 
+      src="https://upload.wikimedia.org/wikipedia/commons/0/08/Icono_de_la_aplicaci%C3%B3n_Yape.png" 
+      alt="Yape">
+
+    <h3>💸 Ingresa el monto en USD (mínimo 10 USD):</h3>
+    <input type="number" id="usd" placeholder="Ejemplo: 10" min="10" />
+    <button onclick="generarBoleta()">💰 Comprar por Yape</button>
+
+    <div class="boleta" id="boleta">
+      <h3>💰 DATOS DE PAGO</h3>
+      <p>🌍 <b>País:</b> Perú</p>
+      <p>💸 <b>Monto a pagar:</b> <span id="montoPEN"></span></p>
+      <p>💳 <b>Método de pago:</b> 🟣 Yape (💵 efectivo)</p>
+      <p>📋 <b>N° Cuenta:</b> 922184802</p>
+      <p>💡 <b>Banca:</b> Electrónica Yape</p>
+      <hr>
+      <p>⚠️ <b>IMPORTANTE:</b><br>
+      • Envía exactamente el monto indicado.<br>
+      • Guarda el comprobante de pago.<br>
+      • Envía el comprobante para confirmar el pago.</p>
+      <p>✅ Una vez realizado el pago, será procesado automáticamente.</p>
+
+      <a id="enviarWhatsApp" class="whatsapp-btn" href="#" target="_blank">
+        <img src="https://upload.wikimedia.org/wikipedia/commons/6/6b/WhatsApp.svg" alt="WhatsApp">Enviar comprobante
+      </a>
+
+      <a class="copy-btn" href="#" onclick="copiarBoleta()">📋 Copiar Orden</a>
+      <a class="history-btn" href="#" onclick="mostrarHistorial()">🕓 Ir al historial</a>
+    </div>
+  </div>
+
+  <div class="historial" id="historial">
+    <h3>📜 Historial de Recargas</h3>
+    <div id="contenedorHistorial"></div>
+    <button class="back-btn" onclick="regresar()">↩️ Regresar</button>
+  </div>
+
+  <script>
+    let historialRecargas = [];
+
+    function generarBoleta() {
+      const usd = parseFloat(document.getElementById("usd").value);
+      if (isNaN(usd) || usd < 10) {
+        alert("⚠️ El monto mínimo es de 10 USD");
+        return;
+      }
+
+      const pen = (usd * 3.8).toFixed(2);
+      const boleta = document.getElementById("boleta");
+      document.getElementById("montoPEN").textContent = `PEN ${pen} (USD ${usd})`;
+      boleta.classList.add("show");
+
+      // Guardar en historial
+      const nuevaRecarga = {
+        id: Math.floor(Math.random() * 10000),
+        pais: "Perú",
+        usd: usd,
+        pen: pen,
+        estado: "pendiente"
+      };
+      historialRecargas.push(nuevaRecarga);
+      actualizarHistorial();
+
+      // Configurar WhatsApp
+      const mensaje = encodeURIComponent(`💰 *DATOS DE PAGO*\n\n🌍 *País:* Perú\n💸 *Monto a pagar:* PEN ${pen} (USD ${usd})\n\n💳 *MÉTODOS DE PAGO DISPONIBLES:*\n🟣 *Yape* (💵 EFECTIVO)\n📋 N° Cuenta: 922184802\n💡 Banca Electrónica Yape\n\n⚠️ *IMPORTANTE:*\n• Envía exactamente PEN ${pen}\n• Guarda el comprobante de pago\n• Envía el comprobante para confirmar el pago\n\n✅ *Una vez realizado el pago, será procesado automáticamente.*`);
+
+      document.getElementById("enviarWhatsApp").href =
+        `https://wa.me/51922184802?text=${mensaje}`;
+    }
+
+    function copiarBoleta() {
+      const boletaText = document.getElementById("boleta").innerText;
+      navigator.clipboard.writeText(boletaText);
+      alert("📋 Boleta copiada correctamente");
+    }
+
+    function mostrarHistorial() {
+      document.getElementById("formulario").style.display = "none";
+      document.getElementById("historial").style.display = "block";
+      mostrarAlerta("✅ Boleta generada y guardada correctamente");
+    }
+
+    function regresar() {
+      document.getElementById("historial").style.display = "none";
+      document.getElementById("formulario").style.display = "block";
+    }
+
+    function actualizarHistorial() {
+      const contenedor = document.getElementById("contenedorHistorial");
+      contenedor.innerHTML = '';
+      historialRecargas.forEach(recarga => {
+        contenedor.innerHTML += `
+          <div class="recarga">
+            <p><b>ID Recarga:</b> #${recarga.id}</p>
+            <p><b>País:</b> 🇵🇪 ${recarga.pais}</p>
+            <p><b>Monto:</b> USD ${recarga.usd} → PEN ${recarga.pen}</p>
+            <span class="estado ${recarga.estado}">${recarga.estado === 'pendiente' ? 'Pendiente ⏳' : 'Aprobado ✅'}</span>
+          </div>
+        `;
+      });
+    }
+
+    function mostrarAlerta(texto) {
+      const alerta = document.createElement("div");
+      alerta.textContent = texto;
+      alerta.style.position = "fixed";
+      alerta.style.top = "50%";
+      alerta.style.left = "50%";
+      alerta.style.transform = "translate(-50%, -50%)";
+      alerta.style.background = "rgba(255, 0, 40, 0.95)";
+      alerta.style.color = "white";
+      alerta.style.padding = "15px 30px";
+      alerta.style.borderRadius = "12px";
+      alerta.style.fontFamily = "Orbitron, sans-serif";
+      alerta.style.boxShadow = "0 0 25px #ff0033, 0 0 50px #ff3366";
+      alerta.style.textShadow = "0 0 10px #fff, 0 0 20px #ff0033";
+      alerta.style.fontSize = "1em";
+      alerta.style.zIndex = "9999";
+      alerta.style.animation = "fadeOut 3s ease forwards";
+
+      document.body.appendChild(alerta);
+      setTimeout(() => alerta.remove(), 3000);
+    }
+  </script>
+</body>
+</html>
