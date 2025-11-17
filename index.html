@@ -3,526 +3,1526 @@
 <head>
 <meta charset="utf-8" />
 <meta name="viewport" content="width=device-width,initial-scale=1" />
-<title>🛒 KCF MDZ - Blue Premium</title>
+<title>🛒 KCF MDZ STORE - Blue Edition (Parte 1)</title>
 <link href="https://fonts.googleapis.com/css2?family=Montserrat:wght@400;600;700;800&display=swap" rel="stylesheet">
-<style>
+<style>/* --------- QUITAR SOLO LOS BORDES DE LOS COSTADOS --------- */
+.card,
+.product-card,
+.product-figure,
+.admin-left,
+.admin-right {
+    border: none !important;
+}
+
+..product-card {
+  width: 100%;
+  max-width: 540px; /* <-- AQUI LO AGRANDAS */
+  margin: auto;
+  padding: 15px;
+  border-radius: 40px;
+  background: rgba(30,45,70,0.35);
+  box-shadow: 0 0 25px rgba(0,200,255,0.25);
+}
   :root{
-    --bg:#07121a;
-    --panel:#072033;
-    --accent:#08c6ff;
-    --accent-2:#2de2b3;
-    --muted: rgba(255,255,255,0.6);
-    --card:#0b2630;
+    --bg-dark:#071029;
+    --accent:#1e90ff;
+    --accent-2:#3ec7ff;
+    --muted: rgba(255,255,255,0.65);
     --glass: rgba(255,255,255,0.02);
-  }
+    --primary:#66c2ff;
+    --card-border: transparent;
+}
   *{box-sizing:border-box}
-  html,body{height:100%; margin:0; font-family:'Montserrat',sans-serif; -webkit-font-smoothing:antialiased;background:linear-gradient(180deg,#021018,#041821);color:#eaf9ff}
-  a{color:var(--accent)}
-  .wrap{max-width:980px;margin:18px auto;padding:18px}
-  header{display:flex;align-items:center;gap:12px;margin-bottom:18px}
-  header .logo{font-weight:900;font-size:28px;color:var(--accent)}
-  header .fb{margin-left:auto;color:var(--muted);font-weight:700}
-  .card{background:linear-gradient(180deg,var(--panel), rgba(0,0,0,0.24));padding:18px;border-radius:12px;border:1px solid rgba(255,255,255,0.03);box-shadow:0 8px 30px rgba(0,0,0,0.5);margin-bottom:14px}
-  .login-grid{display:flex;gap:12px;flex-wrap:wrap}
-  label{display:block;color:var(--accent);font-weight:800;margin-bottom:6px}
-  input[type="text"], input[type="password"], input[type="file"], textarea{width:100%;padding:12px;border-radius:8px;border:1px solid rgba(255,255,255,0.04);background:rgba(0,0,0,0.36);color:#eaf9ff}
-  .actions{display:flex;gap:10px;flex-wrap:wrap}
-  .btn{background:linear-gradient(90deg,var(--accent),var(--accent-2));color:#021018;padding:10px 14px;border-radius:999px;border:none;font-weight:900;cursor:pointer}
-  .btn.ghost{background:transparent;border:1px solid rgba(255,255,255,0.06);color:var(--muted)}
-  nav{display:flex;gap:12px;margin-bottom:12px}
-  nav button{background:transparent;border:none;color:var(--muted);cursor:pointer;font-weight:700}
-  .hidden{display:none}
-  /* products */
-  .products-grid{display:grid;grid-template-columns:repeat(auto-fit,minmax(260px,1fr));gap:14px}
-  .product-card{background:linear-gradient(180deg,rgba(255,255,255,0.01), rgba(0,0,0,0.08));padding:12px;border-radius:10px;overflow:hidden}
-  .product-card img{width:100%;height:140px;object-fit:cover;border-radius:8px;margin-bottom:8px}
-  .small{font-size:13px;color:var(--muted)}
-  .badge{background:rgba(0,0,0,0.2);padding:6px;border-radius:8px}
-  .duration-row{display:flex;gap:8px;flex-wrap:wrap;margin-top:8px}
-  .receipt{background:#00171f;padding:12px;border-radius:8px;border:1px solid rgba(255,255,255,0.04)}
-  /* admin */
-  #adminProducts .card{display:flex;gap:12px;align-items:center;justify-content:space-between}
-  /* orders */
-  #ordersList .card{margin-bottom:8px;padding:8px;background:rgba(255,255,255,0.02);border-radius:8px}
-  /* responsive */
-  @media(max-width:680px){ .login-grid{flex-direction:column} }
+  html,body{height:100%; margin:0; font-family:'Montserrat',sans-serif; -webkit-font-smoothing:antialiased}
+  body{
+    background: linear-gradient(180deg,#071029 0%, #031021 60%);
+    color:#fff;
+    overflow-x:hidden;
+  }
+
+  .bg-wrap{position:fixed;inset:0;z-index:-2;overflow:hidden}
+  .light{position:absolute;border-radius:50%;filter:blur(90px);mix-blend-mode:screen;opacity:.9}
+  .light.blue{width:900px;height:900px;background:radial-gradient(circle,var(--accent),rgba(30,144,255,0) 40%);left:-12%;top:-8%;animation:drift1 22s linear infinite}
+  .light.cyan{width:650px;height:650px;background:radial-gradient(circle,var(--accent-2),rgba(62,199,255,0) 40%);right:-8%;top:6%;animation:drift2 18s linear infinite}
+  .light.soft{width:520px;height:520px;background:radial-gradient(circle,#2fa8ff,rgba(47,168,255,0) 40%);left:18%;bottom:-18%;animation:drift3 26s linear infinite;opacity:.6}
+  @keyframes drift1{0%{transform:translate(0,0)}50%{transform:translate(18vw,-44vh)}100%{transform:translate(0,0)}}
+  @keyframes drift2{0%{transform:translate(0,0)}50%{transform:translate(-10vw,-32vh)}100%{transform:translate(0,0)}}
+  @keyframes drift3{0%{transform:translate(0,0)}50%{transform:translate(-12vw,-18vh)}100%{transform:translate(0,0)}}
+
+  .wrap{max-width:1040px;margin:18px auto;padding:18px 18px 120px;position:relative}
+  header{text-align:center;margin-bottom:6px}
+  h1{font-size:44px;margin:0;color:var(--primary);text-shadow:0 10px 40px rgba(30,144,255,0.06);letter-spacing:1px}
+  .tag{color:var(--muted);margin-top:6px;font-size:14px}
+
+  .card{
+    background: linear-gradient(180deg,var(--glass), rgba(0,0,0,0.28));
+    border-radius:18px;padding:22px;border:1px solid var(--card-border);
+    box-shadow:0 30px 80px rgba(0,0,0,0.7);
+    margin-bottom:18px;
+  }
+
+  /* notification banner (top) */
+  #topBanner{position:fixed;left:50%;transform:translateX(-50%);top:12px;z-index:13000;display:flex;flex-direction:column;gap:8px;align-items:center;pointer-events:none}
+  .banner{pointer-events:auto;min-width:320px;max-width:calc(100% - 40px);background:var(--notif-bg);padding:12px 14px;border-radius:12px;border:1px solid rgba(255,255,255,0.06);box-shadow:0 12px 40px rgba(0,0,0,0.6);display:flex;gap:10px;align-items:center}
+  .banner strong{color:var(--primary);font-weight:900}
+  .banner .emoji{font-size:20px;margin-right:6px}
+
+  /* LOGIN (nuevo tamaño) */
+  #loginCard{max-width:640px;margin:6px auto;padding:28px;border-radius:18px}
+  .login-grid{display:flex;gap:22px;align-items:flex-end;flex-wrap:wrap;justify-content:center}
+  .field{width:100%}
+  .label{display:block;color:var(--primary);font-weight:800;margin-bottom:8px}
+  input[type="text"], input[type="password"], input[type="number"], textarea, select{
+    width:100%;padding:14px;border-radius:12px;border:1px solid rgba(255,255,255,0.04);
+    background:rgba(0,0,0,0.36);color:#fff;font-size:16px;outline:none;transition:transform .12s, box-shadow .14s;
+  }
+
+  .actions{display:flex;gap:14px;justify-content:center;margin-top:18px;flex-wrap:wrap}
+  .btn{
+    padding:12px 18px;border-radius:46px;border:none;cursor:pointer;font-weight:900;font-size:16px;color:#fff;
+    background:linear-gradient(90deg,var(--accent),var(--accent-2));
+    box-shadow:0 22px 60px rgba(30,144,255,0.12), 0 0 35px rgba(62,199,255,0.06);
+  }
+  .btn.create{background:linear-gradient(90deg,#2fa8ff,#9fe9ff);color:#041526}
+  .btn.ghost{background:transparent;color:var(--muted);border:1px solid rgba(255,255,255,0.04);box-shadow:none}
+  .btn.small{padding:8px 10px;border-radius:10px;font-size:14px}
+
+  section.page{display:none;padding:10px 0 80px}
+  section.page.active{display:block}
+
+  .sala-grid{display:flex;gap:20px;flex-wrap:wrap;justify-content:center;margin-top:24px}
+  .sala-btn{
+    width:240px;height:86px;border-radius:18px;display:flex;align-items:center;justify-content:center;
+    background:linear-gradient(180deg, rgba(255,255,255,0.02), rgba(0,0,0,0.14));
+    border:1px solid rgba(255,255,255,0.03);
+    color:var(--primary);font-weight:900;font-size:18px;cursor:pointer;
+    box-shadow:0 20px 60px rgba(0,0,0,0.6);
+    transition:transform .14s, box-shadow .14s, filter .14s;
+  }
+
+  /* PRODUCTS grid & style: tarjeta entera coloreada */
+  .products-wrap{
+    display:grid;
+    grid-template-columns:repeat(auto-fit,minmax(320px,1fr));
+    gap:22px;
+    margin-top:18px;
+  }
+
+  .product-card img {
+    width: 100%;
+    height: 190px; /* Ajusta aquí la altura si la quieres más grande */
+    object-fit: cover;
+    border-radius: 16px;
+    border: 2px solid rgba(0,255,255,0.4); /* borde finito brillante */
+    box-shadow: 0 0 25px rgba(0,180,255,0.45); /* glow azul */
+}
+  .product-card:hover{transform:translateY(-6px)}
+
+  /* Imagen más grande como pediste */
+  .product-figure{
+    width:100%;max-width:420px;height:220px;margin:0 auto;border-radius:14px;overflow:hidden;display:flex;align-items:center;justify-content:center;
+    background:linear-gradient(180deg, rgba(255,255,255,0.02), rgba(0,0,0,0.08));
+    box-shadow:0 15px 40px rgba(0,0,0,0.6), 0 0 30px rgba(0,0,0,0.12);
+    transition:transform .18s;
+    border:8px solid rgba(255,255,255,0.02);
+  }
+  .product-figure img{width:100%;height:100%;object-fit:cover;border-radius:10px}
+
+  .product-title{font-weight:900;color:var(--primary);margin-top:12px;font-size:20px}
+  .product-desc{color:var(--muted);margin-top:6px;font-size:14px}
+
+  /* opt rows (price area) — this box will get the product color accent */
+  .opts{margin-top:12px}
+  .opt-row{display:flex;justify-content:space-between;align-items:center;padding:14px;margin-top:12px;border-radius:12px;background:linear-gradient(180deg, rgba(0,0,0,0.18), rgba(0,0,0,0.12));border:1px solid rgba(255,255,255,0.02);transition:all .18s}
+  .opt-row .left{display:flex;flex-direction:column;align-items:flex-start}
+  .opt-row .left strong{font-size:18px}
+  .opt-row .muted{font-size:13px;color:var(--muted)}
+  .opt-row .price{font-weight:900;font-size:18px;margin-left:12px}
+  .opt-row .buy{margin-left:12px;padding:8px 14px;border-radius:10px;min-width:110px}
+
+  .opt-row.selected{transform:translateY(-6px);box-shadow:0 20px 60px rgba(0,0,0,0.6);border:1px solid rgba(255,255,255,0.06)}
+  .opt-row .price.green{color:var(--success)}
+  .opt-row .price.danger{color:var(--danger)}
+  .opt-row .price.purple{color:var(--purple)}
+
+  /* ADMIN */
+  .admin-grid{display:grid;grid-template-columns:1fr 360px;gap:18px;margin-top:12px}
+  .admin-left, .admin-right{background:transparent}
+  table.admin-table{width:100%;border-collapse:collapse}
+  table.admin-table td, table.admin-table th{padding:10px;border-bottom:1px solid rgba(255,255,255,0.03)}
+  .user-row{display:flex;justify-content:space-between;align-items:center;padding:8px;border-radius:10px;background:rgba(255,255,255,0.02);margin-bottom:8px}
+
+  .admin-add{display:flex;flex-direction:column;gap:8px}
+  .admin-add input, .admin-add textarea, .admin-add select{padding:8px;border-radius:8px;border:1px solid rgba(255,255,255,0.04);background:rgba(0,0,0,0.36);color:#fff}
+
+  /* ---------- MODALES ---------- */
+  .modal-backdrop{position:fixed;inset:0;background:rgba(0,0,0,0.6);display:none;align-items:center;justify-content:center;z-index:9999;}
+  .modal{width:92%;max-width:540px;background:linear-gradient(180deg, rgba(10,10,12,0.95), rgba(4,6,10,0.99));border-radius:16px;padding:18px;border:1px solid rgba(255,255,255,0.06);box-shadow:0 30px 80px rgba(0,0,0,0.7);transform:translateY(20px);opacity:0;transition:all .18s ease;}
+  .modal.show{transform:translateY(0);opacity:1;}
+  .modal .title{font-weight:900;color:var(--primary);font-size:18px;margin-bottom:6px}
+  .modal .product-small{display:flex;gap:12px;align-items:center}
+  .modal .product-small img{width:88px;height:88px;border-radius:10px;object-fit:cover;box-shadow:0 10px 30px rgba(0,0,0,0.6)}
+  .modal .muted{color:var(--muted)}
+  .modal .row{display:flex;justify-content:space-between;align-items:center;padding:10px 0;border-top:1px dashed rgba(255,255,255,0.03)}
+  .modal .price{font-weight:900;font-size:18px}
+  .modal .green{color:var(--success)}
+  .modal .actions{display:flex;gap:12px;justify-content:flex-end;margin-top:14px}
+  .btn.ghost.light{background:transparent;border:1px solid rgba(255,255,255,0.06);color:var(--muted)}
+  .btn.confirm{background:linear-gradient(90deg,#29d17a,#1aa96c);box-shadow:0 18px 40px rgba(45,200,124,0.12)}
+
+  .stat-box{background:rgba(255,255,255,0.02);padding:10px;border-radius:10px;margin-top:10px}
+
+  @media (max-width:720px){
+    .admin-grid{grid-template-columns:1fr}
+    .products-wrap{grid-template-columns:repeat(auto-fit,minmax(260px,1fr))}
+    #loginCard{margin:12px}
+  }
+.stat-box(background:rgba(255,255,255,0.02);padding:10px;border-radius:10px;margin-top:10px)
+
+@media (max-width:720px){
+ ...
+}
+/* --- GLOW AZUL EN LOS COSTADOS DE CADA PRODUCTO --- */
+
+.product-card {
+    position: relative;
+    overflow: hidden;
+}
+
+/* Glow lado izquierdo */
+.product-card::before {
+    content: "";
+    position: absolute;
+    left: -55px;
+    top: 0;
+    width: 110px;
+    height: 100%;
+    background: radial-gradient(circle, rgba(0,170,255,0.55), transparent 70%);
+    filter: blur(55px);
+    opacity: 0.75;
+    pointer-events: none;
+    z-index: 0;
+}
+
+/* Glow lado derecho */
+.product-card::after {
+    content: "";
+    position: absolute;
+    right: -55px;
+    top: 0;
+    width: 110px;
+    height: 100%;
+    background: radial-gradient(circle, rgba(0,170,255,0.55), transparent 70%);
+    filter: blur(55px);
+    opacity: 0.75;
+    pointer-events: none;
+    z-index: 0;
+}
+
+/* Asegurar que el contenido quede encima del glow */
+.product-card > * {
+    position: relative;
+    z-index: 1;
+}
+/* --- TARJETA DEL PRODUCTO COMPLETA --- */
+.product-card {
+    position: relative;
+    padding: 18px;
+    border-radius: 22px;
+    background: linear-gradient(180deg, rgba(0,0,0,0.22), rgba(0,0,0,0.45));
+    box-shadow: 0 0 35px rgba(0,170,255,0.25);
+    overflow: hidden;
+    transition: transform .18s, box-shadow .18s;
+}
+
+/* Hover suave */
+.product-card:hover {
+    transform: translateY(-6px);
+    box-shadow: 0 0 55px rgba(0,170,255,0.40);
+}
+
+/* Glow lateral izquierdo */
+.product-card::before {
+    content: "";
+    position: absolute;
+    left: -70px;
+    top: 0;
+    width: 150px;
+    height: 100%;
+    background: radial-gradient(circle, rgba(0,180,255,0.55), transparent 75%);
+    filter: blur(55px);
+    opacity: 0.7;
+    pointer-events: none;
+}
+
+/* Glow lateral derecho */
+.product-card::after {
+    content: "";
+    position: absolute;
+    right: -70px;
+    top: 0;
+    width: 150px;
+    height: 100%;
+    background: radial-gradient(circle, rgba(0,180,255,0.55), transparent 75%);
+    filter: blur(55px);
+    opacity: 0.7;
+    pointer-events: none;
+}
+
+/* --- IMAGEN GRANDE COMO PEDISTE --- */
+.product-figure {
+    width: 100%;
+    height: 260px; /* MÁS ALTO */
+    border-radius: 16px;
+    overflow: hidden;
+    border: 3px solid rgba(0, 255, 255, 0.45); /* marco finito brillante */
+    box-shadow: 0 0 30px rgba(0, 180, 255, 0.35);
+    margin-bottom: 12px;
+}
+
+.product-figure img {
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+}
+
+/* --- TÍTULO Y DESCRIPCIÓN --- */
+.product-title {
+    font-size: 22px;
+    font-weight: 900;
+    color: #66c2ff;
+}
+
+.product-desc {
+    margin-top: 4px;
+    color: rgba(255,255,255,0.65);
+}
+
+/* --- OPCIONES DE DÍAS --- */
+.opts {
+    margin-top: 16px;
+}
+
+/* --- OPCIONES DE DÍAS (botón ABAJO) --- */
+.opt-row {
+    background: rgba(255,255,255,0.05);
+    padding: 14px;
+    border-radius: 14px;
+    margin-top: 10px;
+    display: flex;
+    flex-direction: column;       /* contenido arriba -> botón abajo */
+    align-items: flex-start;
+    gap: 12px;
+    border: 1px solid rgba(255,255,255,0.04);
+    transition: transform .16s, box-shadow .16s, border .16s;
+}
+
+/* izquierda */
+.opt-row .left {
+    width: 100%;
+}
+
+/* precio debajo del título */
+.opt-row .price {
+    font-size: 18px;
+    font-weight: 900;
+    margin-top: 4px;
+}
+
+/* botón COMPRAR abajo */
+.opt-row .buy {
+    width: 100%;
+    padding: 10px 0;
+    border-radius: 10px;
+    font-size: 15px;
+    font-weight: 900;
+    color: #fff;
+    border: none;
+    cursor: pointer;
+    background: linear-gradient(90deg, #00aaff, #00ddff);
+    box-shadow: 0 0 22px rgba(0,170,255,0.45);
+    transition: transform .15s, box-shadow .15s;
+}
+
+/* hover */
+.opt-row .buy:hover {
+    transform: scale(1.03);
+    box-shadow: 0 0 35px rgba(0,200,255,0.55);
+}
+
+/* agotado */
+.opt-row .buy.agotado {
+    background: linear-gradient(90deg, #ff2b2b, #ff5151) !important;
+    box-shadow: 0 0 25px rgba(255,0,0,0.45);
+}
+
+/* sin saldo */
+.opt-row .buy.sinsaldo {
+    background: linear-gradient(90deg, #666, #888) !important;
+    box-shadow: none;
+}
+.product-buy {
+    width: 100%;               /* <---- BOTÓN ANCHO COMPLETO */
+    margin-top: 6px;
+    padding: 10px;
+    border-radius: 10px;
+    font-size: 16px;
+    font-weight: 900;
+    color: #fff;
+    border: none;
+    cursor: pointer;
+    transition: background .15s, transform .15s;
+    background: linear-gradient(90deg,#00aaff,#00ddff);
+    box-shadow: 0 0 22px rgba(0,170,255,0.45);
+}
+
+/* ANIMACIÓN AL SELECCIONAR */
+.opt-row.selected {
+    transform: scale(1.05);
+    box-shadow: 0 0 40px rgba(0,160,255,0.45);
+    border: 1px solid rgba(0,190,255,0.65);
+}
+
+/* texto izquierdo del día */
+.opt-row .left strong {
+    color: #fff;
+    font-size: 18px;
+}
+
+/* precio */
+.price {
+    font-size: 18px;
+    font-weight: 900;
+}
+
+/* verde si suficiente saldo */
+.price.green {
+    color: #2fff98;
+}
+
+/* rojo si sin saldo */
+.price.danger {
+    color: #ff5f5f;
+}
+
+/* --- BOTÓN COMPRAR --- */
+.product-buy {
+    padding: 8px 16px;
+    border-radius: 10px;
+    font-size: 15px;
+    font-weight: 900;
+    color: #fff;
+    border: none;
+    cursor: pointer;
+    transition: background .15s, transform .15s, box-shadow .15s;
+    background: linear-gradient(90deg, #00aaff, #00ddff);
+    box-shadow: 0 0 22px rgba(0,170,255,0.45);
+}
+
+/* Hover */
+.product-buy:hover {
+    transform: scale(1.07);
+    box-shadow: 0 0 35px rgba(0,200,255,0.55);
+}
+
+/* AGOTADO en rojo */
+.product-buy.agotado {
+    background: linear-gradient(90deg, #ff2b2b, #ff5151) !important;
+    box-shadow: 0 0 25px rgba(255,0,0,0.45);
+}
+
+/* SIN SALDO en gris */
+.product-buy.sinsaldo {
+    background: linear-gradient(90deg, #555, #777) !important;
+    box-shadow: none;
+}
+.buy-footer {
+    margin-top: 20px;
+    display: flex;
+    flex-direction: column;
+    gap: 12px;
+}
+
+.btn-buy-main {
+    width: 100%;
+    padding: 12px;
+    border-radius: 10px;
+    background: linear-gradient(90deg,#00f7ff,#00c2ff);
+    border: none;
+    font-size: 18px;
+    font-weight: 600;
+    color: black;
+    opacity: .6;
+    transition: .2s;
+}
+
+.btn-buy-main.enabled {
+    opacity: 1;
+    transform: scale(1.02);
+}
+
+.btn-cancel-main {
+    width: 100%;
+    padding: 12px;
+    border-radius: 10px;
+    background: linear-gradient(90deg,#ff3d3d,#ff0000);
+    border: none;
+    font-size: 18px;
+    font-weight: 600;
+    color: white;
+}
+#btnLogin, .login-btn {
+    width: 100%;
+    max-width: 420px;
+    padding: 14px;
+    font-size: 18px;
+    border-radius: 14px;
+    display: block;
+    margin: 10px auto;
+}
+#btnLogin,
+#btnCreate {
+    width: 100% !important;
+    max-width: 100% !important;
+    padding: 18px;
+    font-size: 20px;
+    border-radius: 12px;
+    display: block;
+    margin: 12px 0;
+}
+#btnLogin,
+#btnCreate {
+    width: 100% !important;
+    max-width: 100% !important;
+    padding: 18px;
+    font-size: 20px;
+    border-radius: 14px;
+    margin: 12px 0;
+    border: none;
+    cursor: pointer;
+
+    /* 🔥 EFECTO DE BRILLO */
+    background: linear-gradient(90deg, #009dff, #3ecbff);
+    box-shadow: 0 0 15px rgba(0,150,255,0.6);
+    color: #fff;
+
+    /* 🔥 ANIMACIÓN */
+    animation: pulseGlow 2.4s ease-in-out infinite;
+}
+
+/* 🔥 ANIMACIÓN SUAVE DE PULSO */
+@keyframes pulseGlow {
+    0% {
+        transform: scale(1);
+        box-shadow: 0 0 12px rgba(0,150,255,0.6);
+    }
+    50% {
+        transform: scale(1.05);
+        box-shadow: 0 0 28px rgba(0,180,255,0.9);
+    }
+    100% {
+        transform: scale(1);
+        box-shadow: 0 0 12px rgba(0,150,255,0.6);
+    }
+}
+/* 🔥 BRILLO EN TODA LA PÁGINA */
+body::before {
+    content: "";
+    position: fixed;
+    top: 0; left: 0;
+    width: 100%;
+    height: 100%;
+
+    pointer-events: none; /* No molesta al usuario */
+
+    border-radius: 12px;
+
+    /* ✨ BRILLO AZUL */
+    box-shadow:
+        0 0 35px rgba(0,180,255,0.55),
+        inset 0 0 40px rgba(0,180,255,0.55);
+
+    animation: pulseGlow 3.5s ease-in-out infinite;
+}
+
+/* 🔵 ANIMACIÓN SUAVE DEL BRILLO */
+@keyframes pulseGlow {
+    0% {
+        box-shadow:
+            0 0 25px rgba(0,180,255,0.35),
+            inset 0 0 25px rgba(0,180,255,0.35);
+    }
+    50% {
+        box-shadow:
+            0 0 55px rgba(0,220,255,0.9),
+            inset 0 0 55px rgba(0,220,255,0.9);
+    }
+    100% {
+        box-shadow:
+            0 0 25px rgba(0,180,255,0.35),
+            inset 0 0 25px rgba(0,180,255,0.35);
+    }
+}
 </style>
 </head>
+
 <body>
-  <div class="wrap">
-    <header>
-      <div class="logo">🛒 KCF MDZ</div>
-      <div class="fb" id="fbConnected">🔴 desconectado</div>
-    </header>
+<div id="topBanner"></div>
 
-    <!-- LOGIN -->
-    <div id="loginCard" class="card">
-      <h3>Inicia sesión</h3>
-      <div class="login-grid">
-        <div style="flex:1">
-          <label>Usuario</label>
-          <input id="username" type="text" placeholder="Tu usuario" />
-        </div>
-        <div style="width:200px">
-          <label>Contraseña</label>
-          <input id="password" type="password" placeholder="Contraseña" />
-        </div>
-      </div>
-      <div style="margin-top:12px" class="actions">
-        <button id="btnLogin" class="btn">Iniciar sesión</button>
-        <button id="btnCreate" class="btn ghost">Crear cuenta</button>
-        <button id="logoutBtn" class="btn ghost hidden">Cerrar sesión</button>
-      </div>
-      <p class="small" style="margin-top:10px;color:var(--muted)">Cuenta demo admin: <strong>David / 1030</strong></p>
+<div class="bg-wrap">
+  <div class="light blue"></div>
+  <div class="light cyan"></div>
+  <div class="light soft"></div>
+</div>
+
+<div class="wrap">
+
+<header>
+  <h1>🛒 KCF MDZ</h1>
+  <div class="tag">Blue Edition</div>
+  <div style="margin-top:10px;text-align:center">
+    <img id="headerSmall" src="https://media.istockphoto.com/id/693010448/es/vector/ojos-de-anime-ojos-rojos-sobre-fondo-negro-cara-de-anime-de-dibujos-animados-ilustraci%C3%B3n-de.jpg?s=1024x1024&w=is&k=20&c=t94lfdj28L9yNL51aqn5AQ3tKNfCjJXLIjvxxFh5BgM=" alt="logo" style="width:96px;height:96px;border-radius:50%;object-fit:cover;border:4px solid rgba(255,255,255,0.04);box-shadow:0 10px 30px rgba(0,0,0,0.6);">
+  </div>
+</header>
+
+<!-- LOGIN -->
+<div class="card" id="loginCard">
+  <div style="text-align:center;margin-bottom:6px">
+    <strong style="color:var(--primary);font-size:20px">Inicia sesión</strong>
+  </div>
+  <div class="login-grid">
+    <div class="field">
+      <label class="label">Usuario</label>
+      <input id="username" type="text" placeholder="Tu usuario" autocomplete="username">
     </div>
-
-    <!-- Sala -->
-    <div id="page-sala" class="card hidden">
-      <h2>🔥 Sala de estar</h2>
-      <p id="salaWelcome" class="small">Conectado: —</p>
-      <nav>
-        <button onclick="navTo('page-productos')">🛍 Productos</button>
-        <button onclick="navTo('page-cuenta')">👤 Mi Cuenta</button>
-        <button onclick="navTo('page-recargar')">💳 Recargar</button>
-        <button onclick="navTo('page-pedidos')">📦 Pedidos</button>
-        <button onclick="navTo('page-admin')" id="btnNavAdmin" style="display:none">⚙️ Admin</button>
-      </nav>
+    <div class="field">
+      <label class="label">Contraseña</label>
+      <input id="password" type="password" placeholder="Contraseña" autocomplete="current-password">
     </div>
+  </div>
+  <div class="actions" style="margin-top:18px">
+    <button class="btn" id="btnLogin">Iniciar sesión</button>
+    <button class="btn create" id="btnCreate">Crear cuenta</button>
+    <button class="btn ghost" id="bt">Login oficial</button>
+  </div>
+</div>
 
-    <!-- Productos -->
-    <div id="page-productos" class="card hidden">
-      <h3>🛍 Productos</h3>
-      <div id="productsWrap" class="products-grid"></div>
+<!-- SALA -->
+<section id="page-sala" class="page">
+  <div class="card product-card">
+    <h2 style="margin:0;color:var(--primary);font-size:26px">🔥 Sala de estar</h2>
+    <p id="salaWelcome" style="color:var(--muted);margin-top:10px"></p>
+    <div class="sala-grid">
+      <div class="sala-btn" onclick="navTo('page-productos')">🛒 Productos<span class="sub">Tienda</span></div>
+      <div class="sala-btn" onclick="navTo('page-cuenta')">👤 Mi Cuenta</div>
+      <div class="sala-btn" onclick="navTo('page-saldo')">💰 Saldo</div>
     </div>
+  </div>
+</section>
 
-    <!-- Cuenta -->
-    <div id="page-cuenta" class="card hidden">
-      <h3>👤 Mi Cuenta</h3>
+<!-- PRODUCTOS -->
+<section id="page-productos" class="page">
+  <div class="card product-card">
+    <h2 style="margin:0;color:var(--primary);font-size:26px">🛒 Productos disponibles</h2>
+    <div id="productsList" class="products-wrap">
+      <!-- cards se generarán desde Firestore -->
+    </div>
+    <div style="text-align:center;margin-top:18px;">
+      <button class="btn ghost" onclick="navTo('page-sala')">⬅ Volver</button>
+    </div>
+  </div>
+</section>
+
+<!-- SALDO -->
+<section id="page-saldo" class="page">
+  <div class="card product-card">
+    <h2 style="margin:0;color:var(--primary);font-size:26px">💰 Saldo</h2>
+    <div style="margin-top:14px">
+      <p><strong>Usuario:</strong> <span id="saldoUser">—</span></p>
+      <p><strong>Saldo:</strong> <span id="saldoDisplay">—</span> créditos</p>
+      <div style="margin-top:10px"><button id="btnRefreshSaldo" class="btn ghost small">Actualizar</button></div>
+    </div>
+    <div style="text-align:center;margin-top:18px"><button class="btn ghost" onclick="navTo('page-sala')">⬅ Volver</button></div>
+  </div>
+</section>
+
+<!-- MI CUENTA -->
+<section id="page-cuenta" class="page">
+  <div class="card product-card">
+    <h2 style="margin:0;color:var(--primary);font-size:26px">👤 Mi Cuenta</h2>
+    <div style="margin-top:14px">
       <p><strong>Usuario:</strong> <span id="accName">—</span></p>
-      <p><strong>Saldo:</strong> $<span id="accSaldo">0.00</span></p>
+      <p><strong>Registrado:</strong> <span id="accCreated">—</span></p>
+      <p><strong>Saldo:</strong> <span id="accSaldo">—</span> créditos</p>
       <div style="margin-top:12px">
-        <button class="btn ghost" onclick="navTo('page-recargar')">Recargar Saldo</button>
+        <h4 style="margin:0;color:var(--primary)">Mis compras</h4>
+        <div id="miCompras" style="margin-top:8px"></div>
       </div>
+      <div style="margin-top:10px"><button class="btn ghost" onclick="logout()">Cerrar sesión</button></div>
     </div>
+    <div style="text-align:center;margin-top:18px"><button class="btn ghost" onclick="navTo('page-sala')">⬅ Volver</button></div>
+  </div>
+</section>
 
-    <!-- Recargar (redirección simple) -->
-    <div id="page-recargar" class="card hidden">
-      <h3>Recargar</h3>
-      <p class="small">Para recargar usa la página externa:</p>
-      <a id="recargaLink" href="#" target="_blank" class="btn">Ir a recargar</a>
-    </div>
-
-    <!-- Pedidos / historial -->
-    <div id="page-pedidos" class="card hidden">
-      <h3>📦 Mis Pedidos</h3>
-      <div id="ordersList"></div>
-    </div>
-
-    <!-- ADMIN -->
-    <div id="page-admin" class="card hidden">
-      <h3>⚙️ Panel Admin</h3>
-      <div style="display:flex;gap:12px;align-items:flex-start;flex-wrap:wrap">
-        <div style="flex:1;min-width:260px">
-          <label>Nombre</label><input id="pName" type="text" />
-          <label>Descripción</label><textarea id="pDesc" rows="3"></textarea>
-          <div style="display:flex;gap:8px">
-            <div style="flex:1"><label>1 día ($)</label><input id="pPrice1" type="text" /></div>
-            <div style="flex:1"><label>7 días ($)</label><input id="pPrice7" type="text" /></div>
-          </div>
-          <div style="display:flex;gap:8px;margin-top:6px">
-            <div style="flex:1"><label>15 días ($)</label><input id="pPrice15" type="text" /></div>
-            <div style="flex:1"><label>30 días ($)</label><input id="pPrice30" type="text" /></div>
-          </div>
-          <label>Reset link</label><input id="pReset" type="text" placeholder="https://..." />
-          <label>Imagen (galería)</label><input id="pImage" type="file" accept="image/*" />
-          <div style="margin-top:8px" class="actions">
-            <button id="btnAddProduct" class="btn">Agregar producto</button>
-            <button id="btnRefreshAdmin" class="btn ghost">Refrescar lista</button>
-          </div>
-        </div>
-
-        <div style="flex:1;min-width:260px">
-          <h4>Productos actuales</h4>
-          <div id="adminProducts"></div>
+<!-- ADMIN -->
+<section id="page-admin" class="page">
+  <div class="card product-card">
+    <h2 style="margin:0;color:var(--primary);font-size:26px">🔐 Panel Admin</h2>
+    <div class="admin-grid">
+      <div class="admin-left">
+        <h3 style="color:#4cc9ff;margin-top:12px">Usuarios</h3>
+        <div id="adminUsersList" style="margin-top:8px"></div>
+        <hr style="margin:16px 0;border-color:rgba(255,255,255,0.03)">
+        <h3 style="color:#4cc9ff">Pedidos recientes</h3>
+        <div id="adminPedidos" style="margin-top:8px" class="muted">Cargando pedidos...</div>
+      </div>
+      <div class="admin-right">
+        <h3 style="color:#4cc9ff;margin-top:4px">Agregar producto</h3>
+        <div id="adminAddProduct" class="admin-add"></div>
+        <hr style="margin:12px 0;border-color:rgba(255,255,255,0.03)">
+        <h3 style="color:#4cc9ff">Agregar claves</h3>
+        <div style="display:flex;gap:8px;margin-top:8px;flex-wrap:wrap;align-items:flex-start">
+          <select id="keysProduct" style="padding:8px;border-radius:8px;width:100%"></select>
+          <select id="keysDay" style="padding:8px;border-radius:8px;width:120px">
+            <option value="1">1 día</option>
+            <option value="7">7 días</option>
+            <option value="15">15 días</option>
+            <option value="30">30 días</option>
+          </select>
+          <textarea id="keysInput" placeholder="Pega claves, 1 por línea" style="padding:8px;border-radius:8px;width:100%;height:90px"></textarea>
+          <button id="btnAddKeys" class="btn">Agregar claves</button>
         </div>
       </div>
     </div>
+    <div style="margin-top:12px;color:var(--muted);font-size:13px">Nota: las claves se guardan dentro del documento del producto.</div>
+  </div>
+</section>
 
-    <!-- RECEIPT modal -->
-    <div id="receipt" class="card hidden" style="position:fixed;left:50%;top:16%;transform:translateX(-50%);width:92%;max-width:520px;z-index:9999">
-      <div style="display:flex;justify-content:space-between;align-items:center">
-        <div><strong>Boleta / Recibo</strong></div>
-        <button onclick="closeReceipt()" class="btn ghost">Cerrar</button>
+</div> <!-- /wrap -->
+
+<!-- MODALES: Confirm + Boleta + Recarga -->
+<div id="confirmBackdrop" class="modal-backdrop" style="display:none">
+  <div class="modal" id="confirmModal">
+    <div style="display:flex;justify-content:space-between;align-items:center">
+      <div>
+        <div class="title">🛒 Confirmar Compra</div>
+        <div class="muted" id="confirmSub">Verifica antes de confirmar</div>
       </div>
-      <div id="receiptContent" style="margin-top:12px"></div>
+      <div style="cursor:pointer" id="confirmClose">✕</div>
     </div>
+    <div class="product-small" style="margin-top:12px">
+      <img id="confirmImg" src="" alt="img">
+      <div style="flex:1">
+        <div id="confirmProdName" style="font-weight:900;color:var(--primary)"></div>
+        <div class="muted" id="confirmProdDesc" style="font-size:13px"></div>
+        <div class="stat-box">
+          <div style="display:flex;justify-content:space-between">
+            <div class="muted">Duración</div>
+            <div id="confirmDays" style="font-weight:800"></div>
+          </div>
+          <div style="display:flex;justify-content:space-between;margin-top:6px">
+            <div class="muted">Claves disponibles</div>
+            <div id="confirmKeys" style="font-weight:800"></div>
+          </div>
+        </div>
+      </div>
+    </div>
+    <div class="row">
+      <div class="muted">Saldo antes</div>
+      <div id="confirmSaldoBefore" class="price"></div>
+    </div>
+    <div class="row">
+      <div class="muted">Precio</div>
+      <div id="confirmPrice" class="price"></div>
+    </div>
+    <div class="row">
+      <div class="muted">Saldo después</div>
+      <div id="confirmSaldoAfter" class="price green"></div>
+    </div>
+    <div class="actions">
+      <button class="btn small ghost light" id="confirmCancel">Cancelar</button>
+      <button class="btn small confirm" id="confirmBtn">Confirmar compra</button>
+    </div>
+  </div>
+</div>
 
-  </div> <!-- /wrap -->
+<div id="receiptBackdrop" class="modal-backdrop" style="display:none">
+  <div class="modal receipt" id="receiptModal">
+    <div style="display:flex;justify-content:space-between;align-items:center">
+      <div>
+        <div class="title">🎟️ Boleta de Compra</div>
+        <div class="muted" id="receiptSub">Gracias por tu compra</div>
+      </div>
+      <div style="cursor:pointer" id="receiptClose">✕</div>
+    </div>
+    <div style="margin-top:12px;display:flex;gap:12px;align-items:center">
+      <img id="receiptImg" src="" alt="img" style="width:88px;height:88px;border-radius:10px;object-fit:cover">
+      <div>
+        <div id="receiptProd" style="font-weight:900;color:var(--primary)"></div>
+        <div class="muted" id="receiptDur"></div>
+        <div style="margin-top:8px"><span class="muted">Clave:</span> <span id="receiptKey" class="code"></span></div>
+      </div>
+    </div>
+    <div style="margin-top:12px" class="stat-box">
+      <div style="display:flex;justify-content:space-between"><div class="muted">Saldo antes</div><div id="rBefore"></div></div>
+      <div style="display:flex;justify-content:space-between"><div class="muted">Saldo usado</div><div id="rUsed"></div></div>
+      <div style="display:flex;justify-content:space-between"><div class="muted">Saldo ahora</div><div id="rAfter"></div></div>
+    </div>
+    <div class="share">
+      <button class="btn ghost small" id="receiptCloseBtn">Cerrar</button>
+      <button class="btn small" id="btnSaveReceipt">Guardar boleta</button>
+      <button class="btn small" id="btnShareReceipt">Compartir boleta</button>
+    </div>
+  </div>
+</div>
 
+<div id="topupBackdrop" class="modal-backdrop" style="display:none">
+  <div class="modal" id="topupModal">
+    <div style="display:flex;justify-content:space-between;align-items:center">
+      <div><div class="title">✅ Recarga exitosa</div></div>
+      <div style="cursor:pointer" id="topupClose">✕</div>
+    </div>
+    <div style="margin-top:12px" class="stat-box">
+      <div style="display:flex;justify-content:space-between"><div class="muted">Usuario</div><div id="tpUser"></div></div>
+      <div style="display:flex;justify-content:space-between"><div class="muted">Saldo antes</div><div id="tpBefore"></div></div>
+      <div style="display:flex;justify-content:space-between"><div class="muted">Recargado</div><div id="tpAmount" style="font-weight:900"></div></div>
+      <div style="display:flex;justify-content:space-between"><div class="muted">Saldo ahora</div><div id="tpAfter" style="font-weight:900;color:var(--success)"></div></div>
+      <div style="margin-top:8px;color:var(--muted)">Gracias por la confianza 💻🎉</div>
+    </div>
+    <div class="actions">
+      <button class="btn ghost small" id="topupCloseBtn">Cerrar</button>
+    </div>
+  </div>
+</div>
+<!-- PARTE 2: scripts y cierre -->
 <script type="module">
-  // ----- Firebase setup (config included) -----
-  import { initializeApp } from "https://www.gstatic.com/firebasejs/11.0.1/firebase-app.js";
-  import {
-    getFirestore, collection, addDoc, doc, setDoc, getDoc, getDocs,
-    query, where, onSnapshot, updateDoc, deleteDoc, orderBy, serverTimestamp, limit
-  } from "https://www.gstatic.com/firebasejs/11.0.1/firebase-firestore.js";
-  import {
-    getStorage, ref as storageRef, uploadBytes, getDownloadURL
-  } from "https://www.gstatic.com/firebasejs/11.0.1/firebase-storage.js";
+/* ===========================
+   Parte 2 - Lógica JS (Firebase + UI)
+   (Pega esto abajo del HTML de la Parte 1)
+   =========================== */
+import { initializeApp } from "https://www.gstatic.com/firebasejs/11.0.1/firebase-app.js";
+import {
+  getFirestore, collection, addDoc, getDocs, getDoc as fbGetDoc, updateDoc,
+  query, where, doc, increment, runTransaction, orderBy, limit
+} from "https://www.gstatic.com/firebasejs/11.0.1/firebase-firestore.js";
 
-  const firebaseConfig = {
-    apiKey: "AIzaSyAKrBTAkJGhB9s3E3MExqzj8mtXgKYsWRc",
-    authDomain: "davidstore-51f7f.firebaseapp.com",
-    projectId: "davidstore-51f7f",
-    storageBucket: "davidstore-51f7f.firebasestorage.app",
-    messagingSenderId: "363278778609",
-    appId: "1:363278778609:web:0714ebb6903b931a616950",
-    measurementId: "G-LJL6HXG11E"
-  };
+/* --- CONFIG FIREBASE (pon tu config si hace falta) --- */
+const firebaseConfig = {
+  apiKey: "AIzaSyAKrBTAkJGhB9s3E3MExqzj8mtXgKYsWRc",
+  authDomain: "davidstore-51f7f.firebaseapp.com",
+  projectId: "davidstore-51f7f",
+  storageBucket: "davidstore-51f7f.firebasestorage.app",
+  messagingSenderId: "363278778609",
+  appId: "1:363278778609:web:0714ebb6903b931a616950",
+  measurementId: "G-LJL6HXG11E"
+};
 
-  const app = initializeApp(firebaseConfig);
-  const db = getFirestore(app);
-  const storage = getStorage(app);
+const app = initializeApp(firebaseConfig);
+const db = getFirestore(app);
 
-  // show connected
-  document.getElementById('fbConnected').innerText = '✅ conectado';
+/* DOM refs */
+const loginCard = document.getElementById('loginCard');
+const username = document.getElementById('username');
+const password = document.getElementById('password');
+const btnLogin = document.getElementById('btnLogin');
+const btnCreate = document.getElementById('btnCreate');
+const productsList = document.getElementById('productsList');
+const keysProduct = document.getElementById('keysProduct');
+const keysDay = document.getElementById('keysDay');
+const keysInput = document.getElementById('keysInput');
+const btnAddKeys = document.getElementById('btnAddKeys');
+const adminUsersList = document.getElementById('adminUsersList');
+const adminPedidos = document.getElementById('adminPedidos');
+const saldoDisplay = document.getElementById('saldoDisplay');
+const accSaldo = document.getElementById('accSaldo');
+const accName = document.getElementById('accName');
+const accCreated = document.getElementById('accCreated');
+const salaWelcome = document.getElementById('salaWelcome');
+const saldoUser = document.getElementById('saldoUser');
+const btnRefreshSaldo = document.getElementById('btnRefreshSaldo');
+const adminAddProduct = document.getElementById('adminAddProduct');
+const miCompras = document.getElementById('miCompras');
+const topBanner = document.getElementById('topBanner');
 
-  // UI elements
-  const loginCard = document.getElementById('loginCard');
-  const pageSala = document.getElementById('page-sala');
-  const pageProductos = document.getElementById('page-productos');
-  const pageCuenta = document.getElementById('page-cuenta');
-  const pageRecargar = document.getElementById('page-recargar');
-  const pagePedidos = document.getElementById('page-pedidos');
-  const pageAdmin = document.getElementById('page-admin');
+/* modals refs */
+const confirmBackdrop = document.getElementById('confirmBackdrop');
+const confirmModal = document.getElementById('confirmModal');
+const confirmImg = document.getElementById('confirmImg');
+const confirmProdName = document.getElementById('confirmProdName');
+const confirmProdDesc = document.getElementById('confirmProdDesc');
+const confirmDays = document.getElementById('confirmDays');
+const confirmKeys = document.getElementById('confirmKeys');
+const confirmPrice = document.getElementById('confirmPrice');
+const confirmSaldoBefore = document.getElementById('confirmSaldoBefore');
+const confirmSaldoAfter = document.getElementById('confirmSaldoAfter');
+const confirmBtn = document.getElementById('confirmBtn');
+const confirmCancel = document.getElementById('confirmCancel');
+const confirmClose = document.getElementById('confirmClose');
 
-  const btnLogin = document.getElementById('btnLogin');
-  const btnCreate = document.getElementById('btnCreate');
-  const logoutBtn = document.getElementById('logoutBtn');
+const receiptBackdrop = document.getElementById('receiptBackdrop');
+const receiptModal = document.getElementById('receiptModal');
+const receiptImg = document.getElementById('receiptImg');
+const receiptProd = document.getElementById('receiptProd');
+const receiptDur = document.getElementById('receiptDur');
+const receiptKey = document.getElementById('receiptKey');
+const rBefore = document.getElementById('rBefore');
+const rUsed = document.getElementById('rUsed');
+const rAfter = document.getElementById('rAfter');
+const btnSaveReceipt = document.getElementById('btnSaveReceipt');
+const receiptClose = document.getElementById('receiptClose');
+const receiptCloseBtn = document.getElementById('receiptCloseBtn');
+const btnShareReceipt = document.getElementById('btnShareReceipt');
 
-  let currentUser = null; // { user, uid, saldo, isAdmin }
-  let productsListener = null;
-  let ordersListener = null;
+const topupBackdrop = document.getElementById('topupBackdrop');
+const topupModal = document.getElementById('topupModal');
+const tpBefore = document.getElementById('tpBefore');
+const tpAmount = document.getElementById('tpAmount');
+const tpAfter = document.getElementById('tpAfter');
+const tpUser = document.getElementById('tpUser');
+const topupClose = document.getElementById('topupClose');
+const topupCloseBtn = document.getElementById('topupCloseBtn');
 
-  function navTo(id){
-    [pageSala, pageProductos, pageCuenta, pageRecargar, pagePedidos, pageAdmin].forEach(p=>p.classList.add('hidden'));
-    if(id==='page-productos') pageProductos.classList.remove('hidden');
-    if(id==='page-cuenta') pageCuenta.classList.remove('hidden');
-    if(id==='page-recargar') pageRecargar.classList.remove('hidden');
-    if(id==='page-pedidos') pagePedidos.classList.remove('hidden');
-    if(id==='page-admin') pageAdmin.classList.remove('hidden');
-  }
+let currentUser = null;
+let isAdmin = false;
+let pendingConfirm = null; // { pid, productName, day, price, img, keysBefore, saldoBefore }
 
-  // CREATE ACCOUNT
-  btnCreate.addEventListener('click', async ()=>{
-    const u = document.getElementById('username').value.trim();
-    const p = document.getElementById('password').value.trim();
-    if(!u || !p){ alert('Completa usuario y contraseña'); return; }
-    try{
-      await setDoc(doc(db,'usuarios',u), { user:u, pass:p, created:new Date().toISOString(), vip:false, saldo:0 });
-      alert('✅ Cuenta creada. Inicia sesión.');
-    }catch(e){ console.error(e); alert('⚠️ Error creando cuenta'); }
-  });
+/* ---------- Small helpers: banners & modals ---------- */
+function showBanner(text, timeout = 4500){
+  const el = document.createElement('div');
+  el.className = 'banner';
+  el.style = 'pointer-events:auto;min-width:300px;padding:10px 14px;border-radius:10px;margin-top:6px;background:rgba(0,0,0,0.45);';
+  el.innerHTML = `<div style="font-weight:700;margin-right:8px">🔔</div><div style="flex:1">${text}</div><div style="margin-left:8px;cursor:pointer" onclick="this.parentElement.remove()">✕</div>`;
+  topBanner.appendChild(el);
+  setTimeout(()=> el.remove(), timeout);
+}
 
-  // LOGIN
-  btnLogin.addEventListener('click', async ()=>{
-    const u = document.getElementById('username').value.trim();
-    const p = document.getElementById('password').value.trim();
-    if(!u || !p){ alert('Completa usuario y contraseña'); return; }
+function showModal(back, modal){
+  back.style.display = 'flex';
+  document.body.style.overflow = 'hidden';
+  setTimeout(()=> modal.classList.add('show'), 20);
+}
+function hideModal(back, modal){
+  modal.classList.remove('show');
+  setTimeout(()=> { back.style.display = 'none'; const anyOpen = document.querySelectorAll('.modal.show').length; if (!anyOpen) document.body.style.overflow = ''; }, 180);
+}
+[confirmBackdrop, receiptBackdrop, topupBackdrop].forEach(b => {
+  if (!b) return;
+  b.addEventListener('click', (e)=> { if (e.target === b){ if (b === confirmBackdrop) closeConfirmModal(); if (b === receiptBackdrop) closeReceiptModal(); if (b === topupBackdrop) closeTopupModal(); }});
+});
 
-    // Hard-coded admin: David / 1030 (per request)
-    if((u==='David' && p==='1030') || (u==='David' && p==='1030')){
-      currentUser = { user:'David', isAdmin:true, saldo:0, uid:'David' };
-      afterLogin();
-      return;
-    }
+/* -------------------------
+   Crear cuenta
+   ------------------------- */
+btnCreate?.addEventListener('click', async () => {
+  const user = prompt("Usuario nuevo:");
+  if (!user) return;
+  const pass = prompt("Contraseña:");
+  if (!pass) return;
+  try {
+    const q = query(collection(db,'usuarios'), where('user','==',user));
+    const snap = await getDocs(q);
+    if (!snap.empty) return alert("Usuario ya existe");
+    const vip = (user === 'David' && pass === '1030');
+    await addDoc(collection(db,'usuarios'), { user, pass, saldo: 0, created: new Date().toISOString(), vip });
+    alert(vip ? 'Admin creado' : 'Cuenta creada');
+  } catch(e){ console.error(e); alert('Error creando cuenta'); }
+});
 
-    try{
-      const userDoc = await getDoc(doc(db,'usuarios',u));
-      if(!userDoc.exists()){ alert('Usuario no encontrado'); return; }
-      const data = userDoc.data();
-      if(data.pass !== p){ alert('Contraseña incorrecta'); return; }
-      currentUser = { user:u, isAdmin:!!data.isAdmin, saldo: Number(data.saldo||0), uid:u };
-      afterLogin();
-    }catch(e){ console.error(e); alert('Error al conectar a Firebase'); }
-  });
+/* -------------------------
+   Login
+   ------------------------- */
+async function performLogin(){
+  const u = username.value.trim();
+  const p = password.value.trim();
+  if (!u || !p) return alert('Completa usuario y contraseña.');
+  try {
+    const q = query(collection(db,'usuarios'), where('user','==',u), where('pass','==',p));
+    const snap = await getDocs(q);
+    if (snap.empty) return alert('Usuario o contraseña incorrectos');
+    const docu = snap.docs[0];
+    currentUser = { id: docu.id, ...docu.data() };
+    isAdmin = currentUser.vip === true;
+    loginCard.style.display = 'none';
+    if (isAdmin) navTo('page-admin'); else navTo('page-sala');
+    updateUserUI();
+    await ensureProductsExist();
+    await loadProducts();
+    await loadAdminUsers();
+    await loadKeysProducts();
+    await loadMyPurchases();
+    showBanner(`Bienvenido, ${currentUser.user}`);
+  } catch(e){ console.error(e); alert('Error conectando a Firebase'); }
+}
 
-  function afterLogin(){
-    loginCard.classList.add('hidden');
-    pageSala.classList.remove('hidden');
-    document.getElementById('salaWelcome').innerText = 'Conectado: ' + currentUser.user;
-    document.getElementById('accName').innerText = currentUser.user;
-    document.getElementById('accSaldo').innerText = Number(currentUser.saldo||0).toFixed(2);
-    logoutBtn.classList.remove('hidden');
-    // show admin nav button if admin
-    document.getElementById('btnNavAdmin').style.display = currentUser.isAdmin ? 'inline-block' : 'none';
-    // initial loads
-    loadProductsRealtime();
-    loadOrdersRealtime();
-    renderAdminProducts();
-  }
+btnLogin?.addEventListener('click', performLogin);
+[username, password].forEach(inp => { inp?.addEventListener('keydown', (e)=> { if (e.key === 'Enter') performLogin(); }); });
 
-  // LOGOUT
-  logoutBtn.addEventListener('click', ()=>{
-    currentUser = null;
-    loginCard.classList.remove('hidden');
-    pageSala.classList.add('hidden');
-    pageProductos.classList.add('hidden');
-    pageCuenta.classList.add('hidden');
-    pagePedidos.classList.add('hidden');
-    pageAdmin.classList.add('hidden');
-    if(productsListener) productsListener(); productsListener=null;
-    if(ordersListener) ordersListener(); ordersListener=null;
-    document.getElementById('username').value=''; document.getElementById('password').value='';
-    logoutBtn.classList.add('hidden');
-  });
+/* -------------------------
+   Logout / UI
+   ------------------------- */
+window.logout = () => {
+  currentUser = null; isAdmin = false;
+  loginCard.style.display = 'block';
+  document.querySelectorAll('section.page').forEach(p => p.classList.remove('active'));
+  accName.innerText = '—'; accCreated.innerText = '—'; accSaldo.innerText = '—';
+  username.value = ''; password.value = '';
+};
 
-  // PRODUCTS realtime
-  async function loadProductsRealtime(){
-    const productsWrap = document.getElementById('productsWrap');
-    productsWrap.innerHTML = 'Cargando...';
-    const q = collection(db,'products');
-    productsListener = onSnapshot(q, async (snap)=>{
-      productsWrap.innerHTML = '';
-      for(const docSnap of snap.docs){
-        const p = docSnap.data(); p.id = docSnap.id;
-        const card = document.createElement('div'); card.className='product-card';
-        const img = document.createElement('img');
-        img.src = p.imageURL || 'https://via.placeholder.com/600x400?text=No+image';
-        card.appendChild(img);
-        const h = document.createElement('h3'); h.innerText = p.name || 'Sin nombre';
-        card.appendChild(h);
-        const desc = document.createElement('div'); desc.className='small'; desc.innerText = p.desc || '';
-        card.appendChild(desc);
+function updateUserUI(){
+  if (!currentUser) return;
+  salaWelcome.innerText = `Conectado: ${currentUser.user}`;
+  accName.innerText = currentUser.user;
+  accCreated.innerText = currentUser.created ? new Date(currentUser.created).toLocaleString() : '—';
+  const saldo = currentUser.saldo ?? 0;
+  accSaldo.innerText = saldo;
+  saldoDisplay.innerText = saldo;
+  saldoUser.innerText = currentUser.user;
+}
 
-        // prices
-        const prices = document.createElement('div'); prices.className='small';
-        prices.innerHTML = `1d $${Number(p.price1||0).toFixed(2)} · 7d $${Number(p.price7||0).toFixed(2)} · 15d $${Number(p.price15||0).toFixed(2)} · 30d $${Number(p.price30||0).toFixed(2)}`;
-        card.appendChild(prices);
-
-        // durations
-        const durations = document.createElement('div'); durations.className='duration-row';
-        const durationsList = [ {k:'1',label:'1 Día', price:p.price1}, {k:'7',label:'7 Días', price:p.price7}, {k:'15',label:'15 Días', price:p.price15}, {k:'30',label:'30 Días', price:p.price30} ];
-        for(const d of durationsList){
-          const btn = document.createElement('button');
-          btn.className = 'btn';
-          btn.style.padding='8px';
-          btn.innerText = `${d.label} • $${Number(d.price||0).toFixed(2)}`;
-          btn.addEventListener('click', ()=> buyProduct(p.id, d.k, Number(d.price||0), p));
-          // check stock/saldo and update appearance
-          (async ()=>{
-            const has = await checkStock(p.id, d.k);
-            if(!has){
-              btn.className='btn ghost';
-              btn.innerText = `${d.label} • NO DISPONIBLE`;
-              btn.disabled = true;
-            } else {
-              if(currentUser && currentUser.saldo < Number(d.price||0)){
-                btn.className='btn ghost';
-                btn.innerText = `${d.label} • SALDO INSUFICIENTE`;
-                btn.disabled = true;
-              }
-            }
-          })();
-          durations.appendChild(btn);
-        }
-        card.appendChild(durations);
-
-        // reset link
-        if(p.resetLink){
-          const resetBtn = document.createElement('a');
-          resetBtn.className='btn ghost';
-          resetBtn.style.display='inline-block';
-          resetBtn.style.marginTop='10px';
-          resetBtn.href = p.resetLink;
-          resetBtn.target='_blank';
-          resetBtn.innerText = 'Reset';
-          card.appendChild(resetBtn);
-        }
-
-        productsWrap.appendChild(card);
-      }
+/* ===========================
+   ensureProductsExist (crea demo si no hay)
+   =========================== */
+async function ensureProductsExist(){
+  try {
+    const snap = await getDocs(collection(db,'productos'));
+    if (!snap.empty) return;
+    const productosRef = collection(db,'productos');
+    await addDoc(productosRef, {
+      name: "BR MODS", img: "https://via.placeholder.com/420x220",
+      desc: "BR Mods Oficial", color: "#1e90ff",
+      options: [{day:1, price:2},{day:7, price:5},{day:15, price:7},{day:30, price:11}],
+      keys: { dia1: [], dia7: [], dia15: [], dia30: [] }, created: new Date().toISOString()
     });
-  }
-
-  // Check stock
-  async function checkStock(productId, duration){
-    try{
-      const keysCol = collection(db, `products/${productId}/keys`);
-      const q = query(keysCol, where('duration','==', duration), where('used','==', false), limit(1));
-      const snap = await getDocs(q);
-      return !snap.empty;
-    }catch(e){ console.error(e); return false; }
-  }
-
-  // BUY
-  async function buyProduct(productId, duration, price, productData){
-    if(!currentUser){ alert('Inicia sesión primero'); return; }
-    if(currentUser.saldo < price){ alert('Saldo insuficiente'); return; }
-    try{
-      const keysCol = collection(db, `products/${productId}/keys`);
-      const q = query(keysCol, where('duration','==', duration), where('used','==', false), limit(1));
-      const snap = await getDocs(q);
-      if(snap.empty){ alert('No disponible (sin claves)'); return; }
-      const keyDoc = snap.docs[0];
-      const keyData = keyDoc.data();
-      await updateDoc(doc(db, `products/${productId}/keys`, keyDoc.id), { used:true, soldTo: currentUser.user, soldAt: new Date().toISOString() });
-      const expiresAt = new Date();
-      const days = Number(duration);
-      expiresAt.setDate(expiresAt.getDate() + days);
-      await addDoc(collection(db,'orders'), {
-        user: currentUser.user,
-        productId,
-        productName: productData.name,
-        duration,
-        price,
-        code: keyData.code || '',
-        purchasedAt: new Date().toISOString(),
-        expiresAt: expiresAt.toISOString()
-      });
-      // deduct
-      const userRef = doc(db,'usuarios', currentUser.uid);
-      const newSaldo = Number(currentUser.saldo) - Number(price);
-      await updateDoc(userRef, { saldo: newSaldo });
-      currentUser.saldo = newSaldo;
-      document.getElementById('accSaldo').innerText = currentUser.saldo.toFixed(2);
-
-      // show receipt
-      showReceipt({ product: productData.name, code: keyData.code || '—', price, expiresAt: expiresAt.toISOString() });
-    }catch(e){ console.error(e); alert('Error durante compra: ' + (e.message||e)); }
-  }
-
-  // Orders realtime
-  function loadOrdersRealtime(){
-    if(!currentUser) return;
-    const ordersList = document.getElementById('ordersList');
-    ordersList.innerHTML = '';
-    const q = query(collection(db,'orders'), where('user','==', currentUser.user), orderBy('purchasedAt','desc'));
-    ordersListener = onSnapshot(q, snap=>{
-      ordersList.innerHTML = '';
-      snap.forEach(docSnap=>{
-        const o = docSnap.data();
-        const div = document.createElement('div'); div.className='card';
-        div.innerHTML = `<div class="small"><strong>${o.productName}</strong> — $${Number(o.price).toFixed(2)}</div>
-        <div class="small">Código: <span class="badge">${o.code}</span></div>
-        <div class="small">Compra: ${o.purchasedAt}</div>
-        <div class="small">Activo hasta: ${o.expiresAt}</div>`;
-        ordersList.appendChild(div);
-      });
+    await addDoc(productosRef, {
+      name: "DRIP CLIENT", img: "https://via.placeholder.com/420x220",
+      desc: "Drip Client Oficial", color: "#b24cff",
+      options: [{day:1, price:2},{day:7, price:5},{day:15, price:7},{day:30, price:11}],
+      keys: { dia1: [], dia7: [], dia15: [], dia30: [] }, created: new Date().toISOString()
     });
-  }
+    console.log("Productos iniciales creados");
+  } catch(e){ console.error("Error creating default products", e); }
+}
 
-  // Receipt
-  function showReceipt(data){
-    const r = document.getElementById('receipt');
-    document.getElementById('receiptContent').innerHTML = `<div class="receipt"><strong>${data.product}</strong><div style="margin-top:8px">Código: <span style="font-weight:800;color:var(--accent)">${data.code}</span></div><div class="small">Precio: $${Number(data.price).toFixed(2)}</div><div class="small">Válido hasta: ${new Date(data.expiresAt).toLocaleString()}</div></div>`;
-    r.classList.remove('hidden');
-  }
-  function closeReceipt(){ document.getElementById('receipt').classList.add('hidden'); }
+/* ===========================
+   loadProducts + render
+   =========================== */
+async function loadProducts(){
+  if (!productsList) return;
+  productsList.innerHTML = '<div class="muted">Cargando productos...</div>';
+  try {
+    const snap = await getDocs(collection(db,'productos'));
+    productsList.innerHTML = '';
+    if (snap.empty) { productsList.innerHTML = '<div class="muted">No hay productos.</div>'; return; }
 
-  // ADMIN: add product
-  document.getElementById('btnAddProduct').addEventListener('click', async ()=>{
-    if(!currentUser || !currentUser.isAdmin){ alert('Solo admin'); return; }
-    const name = document.getElementById('pName').value.trim();
-    if(!name) return alert('Nombre requerido');
-    const desc = document.getElementById('pDesc').value.trim();
-    const price1 = Number(document.getElementById('pPrice1').value||0);
-    const price7 = Number(document.getElementById('pPrice7').value||0);
-    const price15 = Number(document.getElementById('pPrice15').value||0);
-    const price30 = Number(document.getElementById('pPrice30').value||0);
-    const resetLink = document.getElementById('pReset').value.trim();
-    const file = document.getElementById('pImage').files[0];
-    try{
-      let imageURL = '';
-      if(file){
-        const sRef = storageRef(storage, `product_images/${Date.now()}_${file.name}`);
-        await uploadBytes(sRef, file);
-        imageURL = await getDownloadURL(sRef);
-      }
-      await addDoc(collection(db,'products'), {
-        name, desc, price1, price7, price15, price30, resetLink, imageURL, createdAt: new Date().toISOString()
-      });
-      alert('Producto agregado');
-      // clear
-      document.getElementById('pName').value=''; document.getElementById('pDesc').value='';
-      document.getElementById('pPrice1').value=''; document.getElementById('pPrice7').value='';
-      document.getElementById('pPrice15').value=''; document.getElementById('pPrice30').value='';
-      document.getElementById('pReset').value=''; document.getElementById('pImage').value='';
-      renderAdminProducts();
-    }catch(e){ console.error(e); alert('Error agregando producto'); }
-  });
-
-  document.getElementById('btnRefreshAdmin').addEventListener('click', ()=> renderAdminProducts());
-
-  // Render admin products
-  async function renderAdminProducts(){
-    const container = document.getElementById('adminProducts');
-    container.innerHTML = 'Cargando...';
-    const snap = await getDocs(collection(db,'products'));
-    container.innerHTML = '';
-    for(const docSnap of snap.docs){
-      const p = docSnap.data(); p.id = docSnap.id;
-      const div = document.createElement('div'); div.className='card';
-      div.innerHTML = `<div style="display:flex;gap:12px;align-items:center">
-        <img src="${p.imageURL||'https://via.placeholder.com/120'}" style="width:80px;height:60px;object-fit:cover;border-radius:6px"/>
-        <div style="flex:1">
-          <div><strong>${p.name}</strong></div>
-          <div class="small">${p.desc||''}</div>
-          <div class="small">1d $${Number(p.price1||0).toFixed(2)} · 7d $${Number(p.price7||0).toFixed(2)} · 15d $${Number(p.price15||0).toFixed(2)} · 30d $${Number(p.price30||0).toFixed(2)}</div>
+    for (const docu of snap.docs){
+      const data = docu.data();
+      const pid = docu.id;
+      const card = document.createElement('div');
+      card.className = 'product-card';
+      card.setAttribute('data-product-id', pid);
+      card.innerHTML = `
+        <div class="product-figure" id="figure-${pid}">
+          <img id="img-${pid}" src="${data.img || 'https://via.placeholder.com/420x220'}" alt="${data.name||'Producto'}">
         </div>
+        <div class="product-title">${data.name||'Producto'}</div>
+        <div class="product-desc">${data.desc||''}</div>
+        <div id="opts-${pid}" class="opts"></div>
+        <div class="buy-footer">
+          <button class="btn-buy-main" id="buySelectedBtn-${pid}" disabled>Comprar</button>
+          <button class="btn-cancel-main" id="cancelBuyBtn-${pid}">Cancelar</button>
+        </div>
+      `;
+      productsList.appendChild(card);
+
+      // accent (best-effort)
+      applyAccentToCard(`img-${pid}`, `figure-${pid}`, card, data.color);
+
+      // render options (A: selección verde)
+      await renderOptionsForProduct(pid, data);
+    }
+  } catch(e){ console.error(e); productsList.innerHTML = '<div class="muted">Error cargando productos</div>'; }
+}
+
+/* apply accent simple (uses provided color) */
+function applyAccentToCard(imgId, figureId, cardEl, explicitColor){
+  const fig = document.getElementById(figureId);
+  if (!fig || !cardEl) return;
+  const hex = explicitColor || '#66c2ff';
+  fig.style.borderColor = hex;
+  fig.style.boxShadow = `0 0 30px ${hex}40`;
+  cardEl.style.border = `1px solid ${hex}20`;
+}
+
+/* =============
+   RENDER OPTIONS (estilo A)
+   ============= */
+async function renderOptionsForProduct(pid, pData){
+  const container = document.getElementById(`opts-${pid}`);
+  if (!container) return;
+  container.innerHTML = '';
+
+  const options = Array.isArray(pData.options) ? pData.options : [{day:1,price:2},{day:7,price:5},{day:15,price:7},{day:30,price:11}];
+  const keysObj = pData.keys || { dia1: [], dia7: [], dia15: [], dia30: [] };
+
+  let selectedDay = null;
+  let selectedPrice = 0;
+
+  options.forEach(o => {
+    const keyField = `dia${o.day}`;
+    const free = Array.isArray(keysObj[keyField]) ? keysObj[keyField].length : 0;
+
+    const row = document.createElement('div');
+    row.className = 'opt-row';
+    row.dataset.day = o.day;
+    row.dataset.price = o.price;
+    row.innerHTML = `
+      <div class="left">
+        <strong>${o.day} día(s)</strong>
+        <div class="muted">${free} claves disponibles</div>
       </div>
-      <div style="margin-top:8px" id="adminActions_${p.id}"></div>`;
-      container.appendChild(div);
-      const actions = document.getElementById(`adminActions_${p.id}`);
-      actions.innerHTML = '';
-      ['1','7','15','30'].forEach(d=>{
-        const addBtn = document.createElement('button'); addBtn.className='btn ghost'; addBtn.style.marginRight='8px';
-        addBtn.innerText = `Agregar claves ${d}d`;
-        addBtn.addEventListener('click', ()=> promptAddKeys(p.id, d));
-        actions.appendChild(addBtn);
+      <div class="price">${o.price}$</div>
+    `;
+
+    if (free <= 0){
+      row.style.opacity = "0.45";
+      row.style.pointerEvents = "none";
+    }
+
+    row.addEventListener("click", () => {
+      container.querySelectorAll(".opt-row").forEach(r => r.classList.remove("selected"));
+      row.classList.add("selected");
+      selectedDay = o.day;
+      selectedPrice = o.price;
+
+      // enable buy button
+      const buyBtn = document.getElementById(`buySelectedBtn-${pid}`);
+      if (buyBtn){
+        buyBtn.disabled = false;
+        buyBtn.classList.add('enabled');
+      }
+    });
+
+    container.appendChild(row);
+  });
+
+  // bottom buttons already in card, wire them:
+  const buyBtn = document.getElementById(`buySelectedBtn-${pid}`);
+  const cancelBtn = document.getElementById(`cancelBuyBtn-${pid}`);
+
+  if (cancelBtn){
+    cancelBtn.onclick = () => {
+      container.querySelectorAll(".opt-row").forEach(r => r.classList.remove("selected"));
+      selectedDay = null; selectedPrice = 0;
+      if (buyBtn){ buyBtn.disabled = true; buyBtn.classList.remove('enabled'); }
+    };
+  }
+
+  if (buyBtn){
+    buyBtn.disabled = true;
+    buyBtn.onclick = async () => {
+      if (!currentUser) return alert("Inicia sesión para comprar");
+      if (!selectedDay) return alert("Selecciona un día 🟩");
+      // open confirm modal (it reads live data)
+      openConfirmModalFromButton({ dataset: { pid, name: pData.name || '', day: selectedDay, price: selectedPrice, img: pData.img || '' }});
+    };
+  }
+}
+
+/* ===========================
+   Open Confirm Modal from "btn-like" (we pass fake btn obj)
+   This loads latest product data from Firestore, shows values and sets pendingConfirm
+   =========================== */
+function openConfirmModalFromButton(btn){
+  const pid = btn.dataset.pid;
+  const productName = btn.dataset.name;
+  const day = Number(btn.dataset.day);
+  const price = Number(btn.dataset.price || 0);
+  const img = btn.dataset.img || '';
+  (async () => {
+    try {
+      const pSnap = await fbGetDoc(doc(db,'productos', pid));
+      const pData = pSnap.exists() ? pSnap.data() : {};
+      const keyField = `dia${day}`;
+      const keysObj = pData.keys || { dia1: [], dia7: [], dia15: [], dia30: [] };
+      const free = Array.isArray(keysObj[keyField]) ? keysObj[keyField].length : 0;
+      const saldoBefore = currentUser && currentUser.saldo !== undefined ? Number(currentUser.saldo) : 0;
+      const after = (saldoBefore - price);
+
+      confirmImg.src = img || 'https://via.placeholder.com/150';
+      confirmProdName.innerText = productName || pid;
+      confirmProdDesc.innerText = pData.desc || '';
+      confirmDays.innerText = `${day} día(s)`;
+      confirmKeys.innerText = `${free}`;
+      confirmPrice.innerText = `${price}$`;
+      confirmSaldoBefore.innerText = `${saldoBefore}$`;
+      confirmSaldoAfter.innerText = `${after}$`;
+
+      pendingConfirm = { pid, productName, day, price, img, keysBefore: free, saldoBefore };
+
+      showModal(confirmBackdrop, confirmModal);
+
+      confirmBtn.onclick = null;
+      confirmBtn.disabled = false; confirmBtn.innerText = 'Confirmar compra';
+
+      confirmBtn.onclick = async () => {
+        confirmBtn.disabled = true;
+        confirmBtn.innerText = 'Procesando...';
+        await performPurchaseFromModal();
+      };
+    } catch (e) {
+      console.error(e);
+      alert('Error obteniendo producto');
+    }
+  })();
+}
+
+function closeConfirmModal(){
+  try { confirmBtn.onclick = null; } catch(e){}
+  pendingConfirm = null;
+  hideModal(confirmBackdrop, confirmModal);
+}
+confirmCancel.addEventListener('click', closeConfirmModal);
+confirmClose.addEventListener('click', closeConfirmModal);
+
+/* ===========================
+   PERFORM PURCHASE (atomic with transaction)
+   - This removes one key from product.keys.diaX
+   - Debits user saldo
+   - Creates pedido and boleta
+   - Opens receipt modal with clave
+   =========================== */
+async function performPurchaseFromModal(){
+  if (!pendingConfirm) { closeConfirmModal(); return; }
+  const { pid, productName, day, price, img } = pendingConfirm;
+  const keyField = `dia${day}`;
+  const productRef = doc(db,'productos',pid);
+  const userRef = doc(db,'usuarios', currentUser.id);
+
+  try {
+    const txResult = await runTransaction(db, async (tx) => {
+      const pSnap = await tx.get(productRef);
+      if (!pSnap.exists()) throw new Error('Producto no encontrado');
+      const pData = pSnap.data();
+      const opt = (pData.options || []).find(o => Number(o.day) === day);
+      let thePrice = opt ? Number(opt.price || 0) : price;
+      const uSnap = await tx.get(userRef);
+      if (!uSnap.exists()) throw new Error('Usuario no encontrado');
+      const uData = uSnap.data();
+      const saldo = Number(uData.saldo || 0);
+      if (saldo < thePrice) throw new Error('Saldo insuficiente');
+      const keysObj = pData.keys || {};
+      const arr = Array.isArray(keysObj[keyField]) ? [...keysObj[keyField]] : [];
+      if (arr.length === 0) throw new Error('No hay claves disponibles para esa duración');
+      const clave = arr.shift(); // take first
+      const newKeys = { ...(keysObj) };
+      newKeys[keyField] = arr;
+      tx.update(productRef, { keys: newKeys });
+      tx.update(userRef, { saldo: saldo - thePrice });
+      return { clave, price: thePrice, saldoBefore: saldo, saldoAfter: saldo - thePrice, productData: { ...pData } };
+    });
+
+    const { clave, price: finalPrice, saldoBefore: sb, saldoAfter: sa, productData } = txResult;
+
+    const pedidoDoc = await addDoc(collection(db,'pedidos'), {
+      user: currentUser.user,
+      userId: currentUser.id,
+      product: productName,
+      productId: pid,
+      day,
+      price: finalPrice,
+      clave,
+      created: new Date().toISOString()
+    });
+
+    await addDoc(collection(db,'boletas'), {
+      pedidoId: pedidoDoc.id,
+      user: currentUser.user,
+      userId: currentUser.id,
+      product: productName,
+      productId: pid,
+      day,
+      price: finalPrice,
+      clave,
+      created: new Date().toISOString()
+    });
+
+    const uSnap2 = await fbGetDoc(userRef);
+    currentUser = { id: currentUser.id, ...(uSnap2.exists() ? uSnap2.data() : {}) };
+
+    closeConfirmModal();
+
+    openReceiptModal({
+      img: img || (productData && productData.img) || '',
+      product: productName,
+      day,
+      clave,
+      saldoBefore: sb,
+      used: finalPrice,
+      saldoAfter: sa
+    });
+
+    await loadProducts();
+    await loadMyPurchases();
+    await loadAdminUsers();
+    await loadKeysProducts();
+
+  } catch (err) {
+    console.error('Compra error:', err);
+    alert(err && err.message ? err.message : 'Error en la compra');
+    try { confirmBtn.disabled = false; confirmBtn.innerText = 'Confirmar compra'; } catch(e){}
+  }
+}
+
+/* Receipt modal */
+function openReceiptModal({ img, product, day, clave, saldoBefore, used, saldoAfter }){
+  receiptImg.src = img || 'https://via.placeholder.com/150';
+  receiptProd.innerText = product || '';
+  receiptDur.innerText = `${day} día(s)`;
+  receiptKey.innerText = clave || '—';
+  rBefore.innerText = `${saldoBefore}$`;
+  rUsed.innerText = `-${used}$`;
+  rAfter.innerText = `${saldoAfter}$`;
+  showModal(receiptBackdrop, receiptModal);
+
+  btnSaveReceipt.onclick = async () => {
+    try {
+      await addDoc(collection(db,'boletas'), {
+        user: currentUser.user,
+        userId: currentUser.id,
+        product,
+        productId: null,
+        day,
+        price: used,
+        clave,
+        created: new Date().toISOString(),
+        savedByUser: true
       });
-      const delBtn = document.createElement('button'); delBtn.className='btn'; delBtn.style.marginLeft='8px'; delBtn.innerText='Eliminar producto';
-      delBtn.addEventListener('click', ()=> deleteProduct(p.id));
-      actions.appendChild(delBtn);
+      alert('Boleta guardada');
+    } catch(e){ console.error(e); alert('Error guardando boleta'); }
+  };
+}
+function closeReceiptModal(){ try { btnSaveReceipt.onclick = null; } catch(e){} hideModal(receiptBackdrop, receiptModal); }
+receiptClose.addEventListener('click', closeReceiptModal);
+receiptCloseBtn.addEventListener('click', closeReceiptModal);
+btnShareReceipt.addEventListener('click', () => {
+  const text = `Boleta - ${receiptProd.innerText}\nDuración: ${receiptDur.innerText}\nClave: ${receiptKey.innerText}\nSaldo después: ${rAfter.innerText}`;
+  navigator.clipboard?.writeText(text).then(()=> showBanner('Boleta copiada al portapapeles')).catch(()=> alert('No se pudo copiar.'));
+});
+
+/* ADMIN users list & recarga */
+async function loadAdminUsers(){
+  try {
+    const snap = await getDocs(collection(db,'usuarios'));
+    adminUsersList.innerHTML = '';
+    snap.forEach(d=>{
+      const u = d.data();
+      const div = document.createElement('div');
+      div.className = 'user-row';
+      div.style = 'display:flex;justify-content:space-between;align-items:center;padding:8px;border-radius:10px;background:rgba(255,255,255,0.02);margin-bottom:8px';
+      div.innerHTML = `
+        <div>
+          <div style="font-weight:800">${u.user||'(sin nombre)'}</div>
+          <div class="muted" style="font-size:13px">Saldo: <strong>${u.saldo!==undefined?u.saldo:0}$</strong></div>
+        </div>
+        <div style="display:flex;gap:8px;align-items:center">
+          <input id="add-${d.id}" type="number" placeholder="Cant" style="width:110px;padding:6px;border-radius:6px;border:1px solid rgba(255,255,255,0.04);background:rgba(0,0,0,0.36);color:#fff">
+          <button class="btn small" onclick="promptRecarga('${d.id}','${u.user||''}', ${u.saldo!==undefined?u.saldo:0})">Recargar</button>
+        </div>
+      `;
+      adminUsersList.appendChild(div);
+    });
+
+    const pq = query(collection(db,'pedidos'), orderBy('created','desc'), limit(8));
+    const psnap = await getDocs(pq);
+    adminPedidos.innerHTML = '';
+    psnap.forEach(p=>{
+      const pd = p.data();
+      const el = document.createElement('div');
+      el.className = 'muted';
+      el.style.marginBottom = '8px';
+      el.innerHTML = `<div style="font-weight:800">${pd.product} • ${pd.price}$</div><div style="font-size:12px">${pd.user} • ${pd.created? new Date(pd.created).toLocaleString(): ''}</div>`;
+      adminPedidos.appendChild(el);
+    });
+    if (psnap.empty) adminPedidos.innerHTML = '<div class="muted">No hay pedidos recientes</div>';
+  } catch(e){ console.error(e); adminUsersList.innerHTML = '<div class="muted">Error cargando usuarios</div>'; }
+}
+
+/* promptRecarga */
+window.promptRecarga = async (uid, usernameText, saldoActual) => {
+  const val = Number(document.getElementById('add-'+uid)?.value || 0);
+  if (!val) return alert('Ingresa cantidad válida');
+  try {
+    const uRef = doc(db,'usuarios',uid);
+    const uSnap = await fbGetDoc(uRef);
+    const before = uSnap.exists() ? (uSnap.data().saldo || 0) : saldoActual || 0;
+    await updateDoc(uRef, { saldo: increment(val) });
+    tpBefore.innerText = `${before}$`;
+    tpAmount.innerText = `+${val}$`;
+    tpAfter.innerText = `${before + val}$`;
+    tpUser.innerText = usernameText || '(usuario)';
+    showModal(topupBackdrop, topupModal);
+    await loadAdminUsers();
+    if (currentUser && currentUser.id === uid){
+      currentUser.saldo = before + val;
+      saldoDisplay.innerText = currentUser.saldo;
+      accSaldo.innerText = currentUser.saldo;
     }
-  }
+    showBanner(`${usernameText || 'Usuario'} recargó +${val}$`);
+  } catch(e){ console.error(e); alert('Error recargando'); }
+};
+function closeTopupModal(){ hideModal(topupBackdrop, topupModal); }
+topupClose.addEventListener('click', closeTopupModal);
+topupCloseBtn.addEventListener('click', closeTopupModal);
 
-  // prompt add keys
-  async function promptAddKeys(productId, duration){
-    const raw = prompt(`Escribe claves separadas por coma para ${duration} días`, '');
-    if(!raw) return;
-    const arr = raw.split(',').map(s=>s.trim()).filter(Boolean);
-    if(arr.length===0) return;
-    for(const code of arr){
-      await addDoc(collection(db,`products/${productId}/keys`), { code, duration: String(duration), used:false });
+/* Load products into select for admin keys */
+async function loadKeysProducts(){
+  keysProduct.innerHTML = '';
+  try {
+    const snap = await getDocs(collection(db,'productos'));
+    if (!snap.empty){
+      snap.forEach(d=>{
+        const p = d.data();
+        keysProduct.innerHTML += `<option value="${d.id}">${p.name || d.id}</option>`;
+      });
+    } else {
+      keysProduct.innerHTML = `<option value="">(No hay productos)</option>`;
     }
-    alert('Claves agregadas: ' + arr.length);
-  }
+  } catch(e){ console.error(e); keysProduct.innerHTML = `<option value="">(Error)</option>`; }
+}
 
-  // delete product
-  async function deleteProduct(productId){
-    if(!confirm('Eliminar producto?')) return;
-    try{
-      await deleteDoc(doc(db,'products',productId));
-      alert('Producto eliminado');
-      renderAdminProducts();
-    }catch(e){ console.error(e); alert('Error eliminando'); }
-  }
+/* add keys (admin) */
+btnAddKeys?.addEventListener('click', async () => {
+  if (!isAdmin) return alert('Solo admin');
+  const productId = keysProduct.value;
+  const day = Number(keysDay.value || 1);
+  const raw = keysInput.value.trim();
+  if (!productId || !raw) return alert('Selecciona producto y pega claves');
+  const lines = raw.split('\n').map(l=>l.trim()).filter(l=>l);
+  const keyField = `dia${day}`;
+  try {
+    const pRef = doc(db,'productos', productId);
+    const pSnap = await fbGetDoc(pRef);
+    if (!pSnap.exists()) return alert('Producto no encontrado');
+    const pData = pSnap.data();
+    const keysObj = pData.keys || { dia1: [], dia7: [], dia15: [], dia30: [] };
+    const newArr = Array.isArray(keysObj[keyField]) ? [...keysObj[keyField], ...lines] : [...lines];
+    const newKeys = { ...keysObj, [keyField]: newArr };
+    await updateDoc(pRef, { keys: newKeys });
+    alert('Claves agregadas correctamente');
+    keysInput.value = '';
+    await loadProducts();
+    await loadKeysProducts();
+  } catch(e){ console.error(e); alert('Error agregando claves'); }
+});
 
-  // init
-  async function init(){
-    document.getElementById('recargaLink').href = 'https://kcf-store.github.io/KCF-STORE/';
-    pageAdmin.classList.add('hidden');
-    pageProductos.classList.add('hidden');
-    pageCuenta.classList.add('hidden');
-    pageRecargar.classList.add('hidden');
-    pagePedidos.classList.add('hidden');
-    pageSala.classList.add('hidden');
-    // small auto refresh admin list if logged as admin
-    setInterval(()=>{ if(currentUser && currentUser.isAdmin) renderAdminProducts(); }, 4000);
-  }
-  init();
+/* Admin: create product form */
+function renderAdminProductForm(){
+  if (!adminAddProduct) return;
+  adminAddProduct.innerHTML = `
+    <div style="display:flex;gap:8px;flex-direction:column">
+      <input id="prodName" placeholder="Nombre del producto">
+      <input id="prodImg" placeholder="URL imagen">
+      <input id="prodColor" placeholder="Color HEX (opcional, e.g. #1e90ff)">
+      <textarea id="prodDesc" placeholder="Descripción" style="height:70px"></textarea>
+      <div style="display:flex;gap:8px">
+        <input id="optDay1" placeholder="dia" value="1" style="width:70px">
+        <input id="optPrice1" placeholder="precio" value="2" style="width:70px">
+        <input id="optDay2" placeholder="dia" value="7" style="width:70px">
+        <input id="optPrice2" placeholder="precio" value="5" style="width:70px">
+      </div>
+      <div style="display:flex;gap:8px;margin-top:6px">
+        <input id="optDay3" placeholder="dia" value="15" style="width:70px">
+        <input id="optPrice3" placeholder="precio" value="7" style="width:70px">
+        <input id="optDay4" placeholder="dia" value="30" style="width:70px">
+        <input id="optPrice4" placeholder="precio" value="11" style="width:70px">
+      </div>
+      <div style="display:flex;gap:8px;justify-content:flex-end;margin-top:8px">
+        <button id="btnAddProd" class="btn">Crear producto</button>
+      </div>
+    </div>
+  `;
+  document.getElementById('btnAddProd').addEventListener('click', async ()=>{
+    const name = document.getElementById('prodName').value.trim();
+    const img = document.getElementById('prodImg').value.trim();
+    const color = document.getElementById('prodColor').value.trim();
+    const desc = document.getElementById('prodDesc').value.trim();
+    const options = [
+      { day: Number(document.getElementById('optDay1').value||1), price: Number(document.getElementById('optPrice1').value||0) },
+      { day: Number(document.getElementById('optDay2').value||7), price: Number(document.getElementById('optPrice2').value||0) },
+      { day: Number(document.getElementById('optDay3').value||15), price: Number(document.getElementById('optPrice3').value||0) },
+      { day: Number(document.getElementById('optDay4').value||30), price: Number(document.getElementById('optPrice4').value||0) }
+    ].filter(o => o.day > 0);
+    if (!name) return alert('Nombre requerido');
+    try {
+      await addDoc(collection(db,'productos'), {
+        name, img, color: color || null, desc, options, keys: { dia1: [], dia7: [], dia15: [], dia30: [] }, created: new Date().toISOString()
+      });
+      alert('Producto creado');
+      await loadProducts();
+      await loadKeysProducts();
+      await loadAdminUsers();
+    } catch(e){ console.error(e); alert('Error creando producto'); }
+  });
+}
 
+/* ===========================
+   Mis compras
+   =========================== */
+async function loadMyPurchases(){
+  if (!currentUser) return;
+  if (!miCompras) return;
+  miCompras.innerHTML = '<div class="muted">Cargando compras...</div>';
+  try {
+    const q = query(collection(db,'pedidos'), where('userId','==', currentUser.id));
+    const snap = await getDocs(q);
+    if (snap.empty) { miCompras.innerHTML = '<div class="muted">No tienes compras</div>'; return; }
+    miCompras.innerHTML = '';
+    snap.forEach(d=>{
+      const p = d.data();
+      const div = document.createElement('div');
+      div.style = 'background:rgba(255,255,255,0.02);padding:10px;border-radius:8px;margin-top:8px';
+      div.innerHTML = `
+        <div style="font-weight:800">${p.product} — ${p.day} días</div>
+        <div class="muted">Precio: ${p.price}$ • Clave: ${p.clave || '—'}</div>
+        <div class="muted" style="font-size:12px">${p.created ? new Date(p.created).toLocaleString() : ''}</div>
+      `;
+      miCompras.appendChild(div);
+    });
+  } catch(e){ console.error(e); miCompras.innerHTML = '<div class="muted">Error cargando compras</div>'; }
+}
+
+/* Refresh saldo */
+btnRefreshSaldo?.addEventListener('click', async () => {
+  if (!currentUser) return alert('Inicia sesión primero');
+  try {
+    const dRef = doc(db,'usuarios', currentUser.id);
+    const snap = await fbGetDoc(dRef);
+    if (!snap.exists()) return alert('Usuario no encontrado');
+    const data = snap.data();
+    currentUser = { id: currentUser.id, ...data };
+    saldoDisplay.innerText = data.saldo !== undefined ? data.saldo : 0;
+    accSaldo.innerText = data.saldo !== undefined ? data.saldo : 0;
+    showBanner('Saldo actualizado ✅');
+    await loadProducts();
+    await loadMyPurchases();
+  } catch(e){ console.error(e); alert('Error actualizando saldo'); }
+});
+
+/* ON LOAD INIT */
+window.addEventListener('load', async () => {
+  renderAdminProductForm();
+  await ensureProductsExist();
+  await loadProducts();
+  await loadKeysProducts();
+  await loadAdminUsers();
+});
+
+/* NAV helper */
+window.navTo = id => {
+  document.querySelectorAll('section.page').forEach(p=>p.classList.remove('active'));
+  const el = document.getElementById(id);
+  if (el) el.classList.add('active');
+};
 </script>
 </body>
 </html>
